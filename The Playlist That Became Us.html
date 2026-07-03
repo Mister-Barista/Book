@@ -1,0 +1,3317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Playlist That Became Us - A Love Story in Seven Parts + Epilogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    :root {
+        --paper: #faf8f5;
+        --ink: #2c2825;
+        --accent: #c44d4d;
+        --accent-soft: #e8c4c4;
+        --gold: #b8956a;
+        --shadow: rgba(44, 40, 37, 0.08);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Cormorant Garamond', serif;
+        background: linear-gradient(135deg, #f5f2ed 0%, #ebe6de 100%);
+        color: var(--ink);
+        line-height: 1.8;
+        min-height: 100vh;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    .book-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    @media (min-width: 768px) {
+        .book-container {
+            padding: 4rem 2rem;
+        }
+    }
+
+    .page {
+        background: var(--paper);
+        box-shadow: 
+            0 1px 3px var(--shadow),
+            0 10px 40px -10px var(--shadow),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        border-radius: 2px;
+        margin-bottom: 3rem;
+        position: relative;
+        min-height: 600px;
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    @media (min-width: 768px) {
+        .page {
+            min-height: 800px;
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-inner {
+        padding: 3rem 2rem 5rem;
+    }
+
+    @media (min-width: 768px) {
+        .page-inner {
+            padding: 5rem 4rem 5rem;
+        }
+    }
+
+    .title-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 600px;
+    }
+
+    @media (min-width: 768px) {
+        .title-page {
+            min-height: 800px;
+        }
+    }
+
+    .ornament {
+        width: 80px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        margin: 2rem auto;
+    }
+
+    .book-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        margin: 1rem 0;
+        line-height: 1.1;
+        font-style: italic;
+    }
+
+    .book-subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(0.75rem, 2vw, 0.875rem);
+        font-weight: 300;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 1.5rem 0;
+    }
+
+    .author-name {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(0.875rem, 2.5vw, 1rem);
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        color: var(--ink);
+        margin-top: 3rem;
+    }
+
+    .part-header {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .toc-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--ink);
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .toc-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.75rem 0;
+        font-size: clamp(1.0625rem, 2.8vw, 1.25rem);
+        border-bottom: 1px solid rgba(200, 190, 180, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        gap: 1rem;
+    }
+
+    .toc-item:hover {
+        padding-left: 0.5rem;
+        color: var(--accent);
+    }
+
+    .toc-item:last-child {
+        border-bottom: none;
+    }
+
+    .toc-dots {
+        flex: 1;
+        border-bottom: 1px dotted rgba(200, 190, 180, 0.4);
+        margin: 0 1rem;
+        min-width: 20px;
+    }
+
+    .page-number {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: var(--gold);
+        min-width: 2rem;
+        text-align: right;
+    }
+
+    .chapter-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2rem, 6vw, 3rem);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--ink);
+        margin-bottom: 2.5rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .chapter-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 1px;
+        background: var(--accent-soft);
+        margin: 1.5rem auto 0;
+    }
+
+    .chapter-content {
+        font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+        line-height: 1.9;
+        color: var(--ink);
+        text-align: left;
+    }
+
+    @media (min-width: 768px) {
+        .chapter-content {
+            text-align: justify;
+        }
+    }
+
+    .chapter-content p {
+        margin-bottom: 1.5rem;
+        text-indent: 1.5em;
+    }
+
+    .chapter-content p:first-of-type {
+        text-indent: 0;
+    }
+
+    .chapter-content p:first-of-type::first-letter {
+        font-size: 3.5rem;
+        line-height: 0.8;
+        float: left;
+        margin: 0.1em 0.1em 0 0;
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    .placeholder-note {
+        font-style: italic;
+        color: rgba(44, 40, 37, 0.5);
+        text-align: center;
+        text-indent: 0;
+        font-size: clamp(1rem, 2vw, 1.125rem);
+    }
+
+    .placeholder-note::first-letter {
+        font-size: inherit !important;
+        float: none !important;
+        margin: 0 !important;
+        font-weight: inherit !important;
+        color: inherit !important;
+    }
+
+    .page-footer {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 300;
+        color: var(--gold);
+        letter-spacing: 0.1em;
+    }
+
+    .nav-controls {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 0.75rem;
+        z-index: 100;
+    }
+
+    @media (max-width: 640px) {
+        .nav-controls {
+            bottom: 1rem;
+            right: 1rem;
+        }
+        .nav-btn {
+            width: 44px;
+            height: 44px;
+        }
+    }
+
+    .nav-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--paper);
+        border: 1px solid var(--accent-soft);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .nav-btn:hover {
+        background: var(--accent);
+        color: var(--paper);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px var(--shadow);
+    }
+
+    .nav-btn:active {
+        transform: translateY(0);
+    }
+
+    .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    .nav-btn:disabled:hover {
+        background: var(--paper);
+        color: var(--accent);
+        transform: none;
+    }
+
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--gold));
+        transition: width 0.3s ease;
+        z-index: 101;
+    }
+
+    .toc-section-header {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(200, 190, 180, 0.2);
+    }
+
+    .toc-section-header:first-of-type {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .part-intro {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        font-style: italic;
+        line-height: 1.8;
+        color: var(--ink);
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .part-intro p {
+        margin-bottom: 1.5rem;
+        text-indent: 0;
+    }
+
+    .prologue-subhead {
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(0.875rem, 2vw, 1.125rem);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin: 2.5rem 0 1rem 0;
+        text-indent: 0;
+    }
+
+    .chapter-content strong {
+        font-weight: 600;
+        color: var(--accent);
+    }
+
+    @media print {
+        body { background: white; }
+        .page { box-shadow: none; page-break-after: always; margin-bottom: 0; }
+        .nav-controls, .progress-bar { display: none; }
+    }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="book-container">
+    <!-- Title Page -->
+    <div class="page" id="page-1">
+        <div class="page-inner title-page">
+            <div class="ornament"></div>
+            <div class="book-subtitle">A LOVE STORY TOLD THROUGH MUSIC</div>
+            <h1 class="book-title">The Playlist That Became Us</h1>
+            <div class="ornament"></div>
+            <div class="author-name">Mister Barista & Journee Ala</div>
+        </div>
+        <div class="page-footer">— 1 —</div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="page" id="page-2">
+        <div class="page-inner">
+            <h2 class="toc-title">Contents</h2>
+            <div class="ornament" style="margin-bottom: 3rem;"></div>
+            
+            <div class="toc-item" onclick="scrollToPage(3)">
+                <span>Prologue</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">3</span>
+            </div>
+            
+            <div class="toc-section-header">Part One — The First Spark</div>
+            <div class="toc-item" onclick="scrollToPage(4)">
+                <span>Smile Got Me Wild</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">4</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(5)">
+                <span>You and Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">5</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(6)">
+                <span>I Think About You More Than I Should</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">6</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(7)">
+                <span>My Lane</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">7</span>
+            </div>
+
+            <div class="toc-section-header">Part Two — The Uncertainty</div>
+            <div class="toc-item" onclick="scrollToPage(8)">
+                <span>Introduction</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">8</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(9)">
+                <span>Just One Night</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">9</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(10)">
+                <span>Don’t</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">10</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(11)">
+                <span>Are You Lonely For Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">11</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(12)">
+                <span>Touch Me Like It’s Over</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">12</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(13)">
+                <span>I Tried to Forget You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">13</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(14)">
+                <span>Don’t Walk Away</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">14</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(15)">
+                <span>When I Say I Love You More</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">15</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(16)">
+                <span>Hold Her</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">16</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(17)">
+                <span>I Would Say Yes To You If You Say Yes To Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">17</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(18)">
+                <span>Let Me Love You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">18</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(19)">
+                <span>I Got You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">19</span>
+            </div>
+
+            <div class="toc-section-header">Part Three — The Falling</div>
+            <div class="toc-item" onclick="scrollToPage(20)">
+                <span>Introduction</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">20</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(21)">
+                <span>Don’t Want Anyone But You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">21</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(22)">
+                <span>Passenger Princess</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">22</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(23)">
+                <span>You Make Me Happy</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">23</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(24)">
+                <span>On My Mind</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">24</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(25)">
+                <span>I’m Into You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">25</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(26)">
+                <span>Don’t Wanna Mess This Up</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">26</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(27)">
+                <span>You Can Rest With Me Tonight</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">27</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(28)">
+                <span>Can’t Let You Go</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">28</span>
+            </div>
+
+            <div class="toc-section-header">Part Four — Surrender</div>
+            <div class="toc-item" onclick="scrollToPage(29)">
+                <span>Introduction</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">29</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(30)">
+                <span>Take Your Pain Away</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">30</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(31)">
+                <span>Love Slow Like Sin</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">31</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(32)">
+                <span>Slow Like That</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">32</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(33)">
+                <span>Just Us</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">33</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(34)">
+                <span>You Are My Person</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">34</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(35)">
+                <span>Speed of Light</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">35</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(36)">
+                <span>Don't Fix Me, Love Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">36</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(37)">
+                <span>Ways to Your Heart</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">37</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(38)">
+                <span>Meet Me In My Dreams</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">38</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(39)">
+                <span>Love You For A Lifetime</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">39</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(40)">
+                <span>You Make Me a Better Man</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">40</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(41)">
+                <span>Caught in Moments</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">41</span>
+            </div>
+
+            <div class="toc-section-header">Part Five — Choosing You</div>
+            <div class="toc-item" onclick="scrollToPage(42)">
+                <span>Introduction</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">42</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(43)">
+                <span>Promises</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">43</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(44)">
+                <span>Cuddle</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">44</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(45)">
+                <span>You Got Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">45</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(46)">
+                <span>With You Always</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">46</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(47)">
+                <span>Love the Hell Out of Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">47</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(48)">
+                <span>Worship Her</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">48</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(49)">
+                <span>Because You Loved Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">49</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(50)">
+                <span>Love Me Like You Do</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">50</span>
+            </div>
+
+            <div class="toc-section-header">Part Six — Soul Ties</div>
+            <div class="toc-item" onclick="scrollToPage(51)">
+                <span>Introduction</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">51</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(52)">
+                <span>I’m All In</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">52</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(53)">
+                <span>You’re Always On My Mind</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">53</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(54)">
+                <span>My Love Don’t Need a Reason</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">54</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(55)">
+                <span>Love Without Condition</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">55</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(56)">
+                <span>I Choose You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">56</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(57)">
+                <span>You Ain’t Hard to Love</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">57</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(58)">
+                <span>Made For Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">58</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(59)">
+                <span>Let Me Love You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">59</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(60)">
+                <span>On My Mind</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">60</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(61)">
+                <span>Slow Enough</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">61</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(62)">
+                <span>This Love Been Waiting On You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">62</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(63)">
+                <span>A Woman Like You Deserves Forever</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">63</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(64)">
+                <span>Your Heart Is Safe With Me</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">64</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(65)">
+                <span>I Knew I Loved You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">65</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(66)">
+                <span>The Way You Hold My Name</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">66</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(67)">
+                <span>I Need You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">67</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(68)">
+                <span>I Found Love When I Found You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">68</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(69)">
+                <span>I Will Always Be There For You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">69</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(70)">
+                <span>Only When It’s You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">70</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(71)">
+                <span>My Forever Girlfriend</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">71</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(72)">
+                <span>Closer Tonight</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">72</span>
+            </div>
+
+            <div class="toc-section-header">Part Seven — Forever Feels Right</div>
+            <div class="toc-item" onclick="scrollToPage(73)">
+                <span>Introduction</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">73</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(74)">
+                <span>I’ll Protect Your Heart Forever</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">74</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(75)">
+                <span>Consumed By You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">75</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(76)">
+                <span>I’ve Got You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">76</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(77)">
+                <span>I Don’t Wanna Imagine</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">77</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(78)">
+                <span>I Choose You Daily</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">78</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(79)">
+                <span>You Are My Always</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">79</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(80)">
+                <span>Rain Dance</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">80</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(81)">
+                <span>Forever Makes Sense With You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">81</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(82)">
+                <span>When I See You Smile</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">82</span>
+            </div>
+            <div class="toc-item" onclick="scrollToPage(83)">
+                <span>I Found Everything In You</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">83</span>
+            </div>
+
+            <div class="toc-item" onclick="scrollToPage(84)" style="margin-top: 2rem; border-top: 1px solid rgba(200, 190, 180, 0.2); padding-top: 1.5rem;">
+                <span>Epilogue</span>
+                <span class="toc-dots"></span>
+                <span class="page-number">84</span>
+            </div>
+        </div>
+        <div class="page-footer">— 2 —</div>
+    </div>
+
+    <!-- Prologue -->
+    <div class="page" id="page-3">
+        <div class="page-inner">
+            <h2 class="chapter-title">Prologue</h2>
+            <div class="chapter-content">
+                <p class="prologue-subhead" style="text-indent: 0; margin-top: 0;">Our Story, Told Through Music</p>
+                <p>Every love story has a soundtrack.</p>
+                <p>This is mine.</p>
+                <p>These aren't just songs—they're moments. Every one of them reminds me of a feeling, a conversation, a smile, or a memory that changed me. Together, they tell the story of how I fell in love with you.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">The Day We Met</p>
+                <p>When we first met, something about you immediately caught my attention.</p>
+                <p>I couldn't explain it, but every conversation left me smiling. I'd play songs that filled me with energy because they reminded me of you. I remember thinking, "I'm so glad I met her."</p>
+                <p>You drove me absolutely wild, but it wasn't just attraction. I found myself imagining what "us" could become. I wanted to pull you aside and kiss you... but I also knew something this special deserved patience. I wanted to get to know you properly.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">You Became My Safe Place</p>
+                <p>We'd both been hurt before.</p>
+                <p>Even so, every time I saw you, my whole day became brighter. If work was stressful or life felt heavy, all I had to do was think about you, and somehow everything became lighter.</p>
+                <p>You didn't even know it, but you were carrying me through days you weren't there to see.</p>
+                <p>Before long, bringing you your morning coffee became one of my favourite parts of the day. It wasn't about the coffee anymore, it was about seeing you smile.</p>
+                <p>Every quiet morning before work became filled with thoughts of you. When work became busy, I'd find myself searching for those thoughts again because they gave me peace.</p>
+                <p>You became the calm in my chaos.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">You Helped Me Find Myself Again</p>
+                <p>As I got to know you, something unexpected happened.</p>
+                <p>A part of me I'd buried for a long time started coming back to life.</p>
+                <p>I realised how much love, compassion and gentleness I still had inside me. You weren't asking me to change, you simply made me feel safe enough to become myself again.</p>
+                <p>Friends noticed how highly I spoke of you.</p>
+                <p>They could see what I was trying to hide.</p>
+                <p>The truth was... I was already falling.</p>
+                <p>You were putting me back together without even knowing it.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">Falling For Your Soul</p>
+                <p>One night I realised something.</p>
+                <p>I didn't even know what you looked like.</p>
+                <p>And somehow... it didn't matter.</p>
+                <p>Your kindness.</p>
+                <p>Your humour.</p>
+                <p>Your heart.</p>
+                <p>The way we understood each other.</p>
+                <p>That was enough.</p>
+                <p>I wasn't falling for a face.</p>
+                <p>I was falling for your soul.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">Saying "Yes" Before You Even Asked</p>
+                <p>The more we talked, the more certain I became.</p>
+                <p>If one day you asked me to be yours...</p>
+                <p>My answer would already be yes.</p>
+                <p>Not because everything was perfect.</p>
+                <p>But because of the connection we had built together.</p>
+                <p>I believed in us.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">Learning Your Heart</p>
+                <p>As I listened to you, I realised your heart had walls around it.</p>
+                <p>Not because you didn't want love...</p>
+                <p>But because life had given you reasons to protect yourself.</p>
+                <p>I never wanted to tear those walls down.</p>
+                <p>I simply wanted to stand beside them until one day you felt safe enough to open the gate yourself.</p>
+                <p>I wanted to be the person who held your heart gently.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">When I Thought I Was Losing You</p>
+                <p>Then things became uncertain.</p>
+                <p>Life became overwhelming.</p>
+                <p>You needed space.</p>
+                <p>Every part of me wanted to fight for us, but love isn't about holding someone too tightly.</p>
+                <p>So I stepped back.</p>
+                <p>Not because my feelings changed...</p>
+                <p>But because loving someone sometimes means giving them room to breathe.</p>
+                <p>I'll admit...</p>
+                <p>It broke my heart.</p>
+                <p>I hoped.</p>
+                <p>I held onto every conversation we'd shared.</p>
+                <p>I tried convincing myself to move on.</p>
+                <p>But every road somehow led back to you.</p>
+                <p>Even if this wasn't going to become the love story I dreamed of, I wanted you to know one thing...</p>
+                <p>I'd still be here.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">Choosing You</p>
+                <p>Then something changed.</p>
+                <p>The uncertainty slowly became hope.</p>
+                <p>Hope became trust.</p>
+                <p>Trust became love.</p>
+                <p>I realised I didn't want anyone else.</p>
+                <p>Every heartbeat brought me back to you.</p>
+                <p>Every dream ended with you.</p>
+                <p>Every future I imagined had you standing beside me.</p>
+                <p>You weren't just someone I loved.</p>
+                <p>You had become home.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">Completely, Hopelessly In Love</p>
+                <p>Somewhere along the way...</p>
+                <p>I stopped falling.</p>
+                <p>Because I'd already landed.</p>
+                <p>You became my peace.</p>
+                <p>My safe place.</p>
+                <p>My biggest smile.</p>
+                <p>My calm.</p>
+                <p>My passion.</p>
+                <p>My best friend.</p>
+                <p>The woman who made me believe love could still exist exactly the way I'd always dreamed it could.</p>
+                <p>You became the first thought in my mornings and the last thought before I fell asleep.</p>
+                <p>You became my favourite person.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">My Promise</p>
+                <p>Love isn't only about the easy days.</p>
+                <p>It's about choosing each other when life hurts.</p>
+                <p>When grief arrives.</p>
+                <p>When fear takes over.</p>
+                <p>When one of us is struggling.</p>
+                <p>That's who I want to be.</p>
+                <p>I won't try to fix you.</p>
+                <p>I'll simply love you.</p>
+                <p>I'll hold your hand through the storms.</p>
+                <p>I'll celebrate your victories.</p>
+                <p>I'll sit beside you in silence when words aren't enough.</p>
+                <p>I'll protect your heart as carefully as you've trusted me with it.</p>
+                
+                <p class="prologue-subhead" style="text-indent: 0;">Today</p>
+                <p>Today, when I look back at every song on this playlist, I don't just hear music.</p>
+                <p>I hear the story of a man whose heart slowly found its way home.</p>
+                <p>Every song reminds me of another step that led me to you.</p>
+                <p>If I had to live this story all over again...</p>
+                <p>I'd still choose you.</p>
+                <p>Every single time.</p>
+                <p>Because somewhere between the first smile, the first coffee, the first late-night conversation, and every song in between...</p>
+                <p>You became the greatest love I've ever known.</p>
+                <p>And if my heart could speak without music...</p>
+                <p>It would simply say</p>
+                <p><strong>I love you, Journee. Yesterday. Today. Tomorrow. Always.</strong></p>
+            </div>
+        </div>
+        <div class="page-footer">— 3 —</div>
+    </div>
+
+    <!-- Part One -->
+    <div class="page" id="page-4">
+        <div class="page-inner">
+            <div class="part-header">Part One — The First Spark</div>
+            <h2 class="chapter-title">Smile Got Me Wild</h2>
+            <div class="chapter-content">
+                <p>Meeting you felt like a switch had been flipped inside me.</p>
+                <p>Before you, life was moving the way it always had—same days, same routines, same noise. But after that first meeting, everything felt louder somehow. Brighter. Like the world had suddenly turned the volume up.</p>
+                <p>That's what Smile Got Me Wild became for me.</p>
+                <p>I'd play it over and over, and every single time it came on, it was you in my head.</p>
+                <p>Your smile.</p>
+                <p>Your energy.</p>
+                <p>The way you made something in me wake up.</p>
+                <p>You had this way of getting under my skin so quickly, and I don't think you even knew it. I'd catch myself grinning like an idiot after our conversations, replaying little things you said, the sound of your laugh, the way you carried yourself.</p>
+                <p>You drove me wild.</p>
+                <p>And not just in the obvious way.</p>
+                <p>Yes, I wanted to pull you aside and kiss you. I wanted to feel what it would be like to be close to you, to close the space between us and stop pretending I wasn't thinking about it.</p>
+                <p>But underneath all that desire was something deeper.</p>
+                <p>Something quieter.</p>
+                <p>Because even then, before we had become anything, I could already feel the shape of what us might look like.</p>
+                <p>And that scared me.</p>
+                <p>Not because it felt wrong.</p>
+                <p>But because it felt possible.</p>
+                <p>So I told myself to slow down.</p>
+                <p>Play it cool.</p>
+                <p>Get to know you.</p>
+                <p>Because something in me knew that if this became real, it wouldn't be temporary.</p>
+                <p>And for the first time in a long time…</p>
+                <p>I wanted something real.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 4 —</div>
+    </div>
+
+    <div class="page" id="page-5">
+        <div class="page-inner">
+            <h2 class="chapter-title">You and Me</h2>
+            <div class="chapter-content">
+                <p>We'd both been burned before.</p>
+                <p>I could feel it in the way we spoke sometimes.</p>
+                <p>In the pauses.</p>
+                <p>In the things left unsaid.</p>
+                <p>There's a certain kind of pain that changes people, makes them more careful, makes them hold pieces of themselves back.</p>
+                <p>I knew that pain because I carried it too.</p>
+                <p>But even with all that history, all those scars, you still made everything feel lighter.</p>
+                <p>Every time I saw you, my day changed.</p>
+                <p>It didn't matter how heavy things felt before that.</p>
+                <p>Stress.</p>
+                <p>Pressure.</p>
+                <p>Life.</p>
+                <p>The second you appeared, it was like someone opened a window and let fresh air in.</p>
+                <p>And when you weren't there?</p>
+                <p>I'd think about you.</p>
+                <p>Just the thought of you and me was enough to carry me through.</p>
+                <p>That idea became my escape.</p>
+                <p>Not fantasy.</p>
+                <p>Not obsession.</p>
+                <p>Hope.</p>
+                <p>Because there was something about you that made me believe maybe this time could be different.</p>
+                <p>Maybe this time love wouldn't hurt.</p>
+                <p>Maybe this time it could heal.</p>
+                <p>I didn't need anything extravagant.</p>
+                <p>Sometimes all I needed was your name crossing my mind.</p>
+                <p>That was enough to steady me.</p>
+                <p>Enough to remind me there was still something good waiting for me.</p>
+                <p>And slowly, without meaning to…</p>
+                <p>you started becoming my peace.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 5 —</div>
+    </div>
+
+    <div class="page" id="page-6">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Think About You More Than I Should</h2>
+            <div class="chapter-content">
+                <p>Mornings used to be empty.</p>
+                <p>Quiet.</p>
+                <p>Routine.</p>
+                <p>Just another shift beginning.</p>
+                <p>But then you happened.</p>
+                <p>And suddenly mornings became yours.</p>
+                <p>Every day when I clocked on, before the noise started, before everything became busy, I'd find myself thinking about you.</p>
+                <p>It became a habit before I even realised it.</p>
+                <p>Standing there in that stillness, I'd let my mind drift back to you.</p>
+                <p>To our conversations.</p>
+                <p>To your voice.</p>
+                <p>To the way you made me feel seen.</p>
+                <p>And in those moments, my heart felt calm.</p>
+                <p>That was new for me.</p>
+                <p>You brought me peace in places that used to feel hollow.</p>
+                <p>And when work got busy, when the pressure built and everything became chaos again, I'd go looking for those thoughts.</p>
+                <p>Like returning to something safe.</p>
+                <p>I'd hold onto them.</p>
+                <p>Hold onto you.</p>
+                <p>Even if it was only inside my head.</p>
+                <p>Because somehow, thinking about you made the hard parts easier.</p>
+                <p>It made the long days shorter.</p>
+                <p>It made the weight lighter.</p>
+                <p>That's when I knew this was becoming something bigger.</p>
+                <p>Because you weren't just crossing my mind.</p>
+                <p>You were staying there.</p>
+                <p>Living there.</p>
+                <p>And I was beginning to realise…</p>
+                <p>I thought about you far more than I should.</p>
+                <p>But somehow…</p>
+                <p>it still didn't feel like enough.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 6 —</div>
+    </div>
+
+    <div class="page" id="page-7">
+        <div class="page-inner">
+            <h2 class="chapter-title">My Lane</h2>
+            <div class="chapter-content">
+                <p>Then something changed in me.</p>
+                <p>Something I thought had been gone for a long time.</p>
+                <p>Passion.</p>
+                <p>Not just for you.</p>
+                <p>For life.</p>
+                <p>For myself.</p>
+                <p>For everything.</p>
+                <p>Before you, there were parts of me that had gone quiet.</p>
+                <p>Parts I'd shut down.</p>
+                <p>Parts I'd convinced myself didn't matter anymore.</p>
+                <p>But you brought them back.</p>
+                <p>Without trying.</p>
+                <p>Without even knowing.</p>
+                <p>You made me feel alive again.</p>
+                <p>Suddenly I had energy.</p>
+                <p>Drive.</p>
+                <p>Fire.</p>
+                <p>Problems didn't feel as heavy.</p>
+                <p>Drama didn't touch me the way it used to.</p>
+                <p>Stress lost its grip.</p>
+                <p>Because I had this feeling inside me that I couldn't explain.</p>
+                <p>A feeling that maybe life was shifting.</p>
+                <p>Maybe I was shifting.</p>
+                <p>And every time someone asked about you, I couldn't hide the way I spoke.</p>
+                <p>I spoke about you like someone who had already fallen.</p>
+                <p>Because maybe I had.</p>
+                <p>Or maybe I was standing right at the edge of it.</p>
+                <p>Either way…</p>
+                <p>you had put me back in my lane.</p>
+                <p>Not the lane I was surviving in.</p>
+                <p>The one I was meant for.</p>
+                <p>The one where my heart still worked.</p>
+                <p>The one where love still felt possible.</p>
+                <p>And that's when I realised—</p>
+                <p>meeting you wasn't random.</p>
+                <p>It was the beginning of something.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 7 —</div>
+    </div>
+
+    <!-- Part Two -->
+    <div class="page" id="page-8">
+        <div class="page-inner title-page">
+            <div class="part-header">Part Two — The Uncertainty</div>
+            <div class="part-intro">
+                <p>There came a point where what we had stopped feeling simple.</p>
+                <p>The spark was still there.</p>
+                <p>The pull between us was undeniable.</p>
+                <p>But feelings were getting heavier now.</p>
+                <p>What started as smiles and curiosity had become something harder to ignore.</p>
+                <p>And with that came fear.</p>
+                <p>Not because I doubted what I felt.</p>
+                <p>But because I was starting to realise how much it would hurt if I lost you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 8 —</div>
+    </div>
+
+    <div class="page" id="page-9">
+        <div class="page-inner">
+            <h2 class="chapter-title">Just One Night</h2>
+            <div class="chapter-content">
+                <p>There was a moment where everything felt suspended between possibility and reality.</p>
+                <p>Nothing was official.</p>
+                <p>Nothing was promised.</p>
+                <p>But something was there.</p>
+                <p>I could feel it.</p>
+                <p>Just One Night would play, and I’d catch myself sinking into it, letting the rhythm carry all the thoughts I was trying to keep under control.</p>
+                <p>By then I knew I wanted more than friendship.</p>
+                <p>That part was clear.</p>
+                <p>But wanting something and being ready for it are two different things.</p>
+                <p>I knew this needed time.</p>
+                <p>More conversations.</p>
+                <p>More truth.</p>
+                <p>More understanding.</p>
+                <p>Because what we were building wasn’t something I wanted to rush.</p>
+                <p>You weren’t someone I wanted to rush.</p>
+                <p>I wanted to know your heart.</p>
+                <p>I wanted to understand your scars.</p>
+                <p>And I wanted to know whether what I was feeling… was something you could feel too.</p>
+                <p>So I stayed patient.</p>
+                <p>Even though part of me wanted to close the distance between us and stop pretending I wasn’t already imagining what it would feel like to have you beside me.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 9 —</div>
+    </div>
+
+    <div class="page" id="page-10">
+        <div class="page-inner">
+            <h2 class="chapter-title">Don’t</h2>
+            <div class="chapter-content">
+                <p>This was when the walls started moving.</p>
+                <p>Yours.</p>
+                <p>Mine.</p>
+                <p>Conversations became deeper.</p>
+                <p>Longer.</p>
+                <p>More vulnerable.</p>
+                <p>And with that came confusion.</p>
+                <p>Not because what we had wasn’t real…</p>
+                <p>but because it was becoming too real to hide from.</p>
+                <p>I kept wondering where your heart was.</p>
+                <p>Were you pulling closer?</p>
+                <p>Or were you scared?</p>
+                <p>Did you feel the same ache when our conversations ended?</p>
+                <p>Did you think about us the way I did?</p>
+                <p>I wanted you.</p>
+                <p>Not casually.</p>
+                <p>Not temporarily.</p>
+                <p>I wanted the real thing.</p>
+                <p>And every time we talked, that feeling only grew.</p>
+                <p>But uncertainty has a cruel way of making you question everything.</p>
+                <p>So I sat there in that space between hope and fear…</p>
+                <p>wondering if your heart was reaching for mine too.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 10 —</div>
+    </div>
+
+    <div class="page" id="page-11">
+        <div class="page-inner">
+            <h2 class="chapter-title">Are You Lonely For Me</h2>
+            <div class="chapter-content">
+                <p>The nights became louder.</p>
+                <p>That’s what uncertainty does.</p>
+                <p>It makes silence unbearable.</p>
+                <p>We talked about what things could look like if we kept moving forward.</p>
+                <p>What “us” could become.</p>
+                <p>And we talked about space.</p>
+                <p>Giving you room.</p>
+                <p>Giving you time.</p>
+                <p>Because I could feel how much you were carrying.</p>
+                <p>And love—real love—isn’t forcing someone to move faster than they’re ready.</p>
+                <p>So I gave you that.</p>
+                <p>But at night…</p>
+                <p>lying there alone…</p>
+                <p>I’d stare at the ceiling and wonder.</p>
+                <p>Were you thinking of me too?</p>
+                <p>Did your heart miss me the way mine missed you?</p>
+                <p>Did you feel the weight of what we were becoming?</p>
+                <p>Or was I carrying that alone?</p>
+                <p>I never wanted to pressure you.</p>
+                <p>I only wanted to understand you.</p>
+                <p>To meet you where you were.</p>
+                <p>To love you in the pace you needed.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 11 —</div>
+    </div>
+
+    <div class="page" id="page-12">
+        <div class="page-inner">
+            <h2 class="chapter-title">Touch Me Like It’s Over</h2>
+            <div class="chapter-content">
+                <p>Hope can be beautiful.</p>
+                <p>But it can also hurt.</p>
+                <p>I kept holding on.</p>
+                <p>Telling myself things would settle.</p>
+                <p>That time would clear the confusion.</p>
+                <p>That eventually we’d find our way.</p>
+                <p>But there were moments where fear got louder.</p>
+                <p>Moments where I thought…</p>
+                <p>what if this doesn’t happen?</p>
+                <p>What if all of this feeling, all of this connection, ends here?</p>
+                <p>And that thought wrecked me.</p>
+                <p>Because by then my feelings for you were no longer small.</p>
+                <p>They had roots.</p>
+                <p>Deep ones.</p>
+                <p>And if it wasn’t going to work…</p>
+                <p>if this was all we were ever going to be…</p>
+                <p>then I just wanted one thing.</p>
+                <p>To hold you.</p>
+                <p>To be close to you.</p>
+                <p>To let whatever this was exist fully, even if only for a moment.</p>
+                <p>And if goodbye was coming…</p>
+                <p>I wanted it to be gentle.</p>
+                <p>Not because I loved you less.</p>
+                <p>But because I loved you enough to let you go if that’s what you needed.</p>
+                <p>Even if it tore me apart.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 12 —</div>
+    </div>
+
+    <div class="page" id="page-13">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Tried to Forget You</h2>
+            <div class="chapter-content">
+                <p>Then came the distance.</p>
+                <p>And it felt like something inside me cracked.</p>
+                <p>You pulled back.</p>
+                <p>And I understood why.</p>
+                <p>But understanding it didn’t stop it from hurting.</p>
+                <p>I tried.</p>
+                <p>God, I tried.</p>
+                <p>Tried to distract myself.</p>
+                <p>Tried to stop replaying everything.</p>
+                <p>Tried to tell myself maybe this was all it was ever meant to be.</p>
+                <p>But my heart refused.</p>
+                <p>Because everything led back to you.</p>
+                <p>A song.</p>
+                <p>A thought.</p>
+                <p>A quiet room.</p>
+                <p>A memory.</p>
+                <p>It all circled back.</p>
+                <p>Not just to your face.</p>
+                <p>To your soul.</p>
+                <p>To the way you made me feel understood.</p>
+                <p>And even though part of me hoped maybe we could at least stay close…</p>
+                <p>the deeper truth was harder to admit.</p>
+                <p>I wanted more.</p>
+                <p>I still wanted us.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 13 —</div>
+    </div>
+
+    <div class="page" id="page-14">
+        <div class="page-inner">
+            <h2 class="chapter-title">Don’t Walk Away</h2>
+            <div class="chapter-content">
+                <p>This was the part where I felt you slipping.</p>
+                <p>And it scared me.</p>
+                <p>Not because I wanted to hold you too tightly.</p>
+                <p>But because life without you had already started to feel incomplete.</p>
+                <p>Our talks.</p>
+                <p>Our laughter.</p>
+                <p>Your presence.</p>
+                <p>They had become part of my days.</p>
+                <p>And without them, something felt missing.</p>
+                <p>I prayed things would work out.</p>
+                <p>Prayed this space wasn’t the beginning of the end.</p>
+                <p>I respected that you needed distance.</p>
+                <p>I respected that your heart needed room.</p>
+                <p>But deep down…</p>
+                <p>I hoped space wouldn’t become goodbye.</p>
+                <p>Because losing you felt heavier than I wanted to admit.</p>
+                <p>And every day without you felt unfinished.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 14 —</div>
+    </div>
+
+    <div class="page" id="page-15">
+        <div class="page-inner">
+            <h2 class="chapter-title">When I Say I Love You More</h2>
+            <div class="chapter-content">
+                <p>This was when my feelings became undeniable.</p>
+                <p>Heavy.</p>
+                <p>Real.</p>
+                <p>Strong enough that I couldn’t hide from them anymore.</p>
+                <p>I wanted us.</p>
+                <p>Completely.</p>
+                <p>But things still felt unclear.</p>
+                <p>I didn’t know if your heart was ready.</p>
+                <p>And I knew you were carrying more pain than most people ever saw.</p>
+                <p>This was one of the hardest parts.</p>
+                <p>Watching you hurt.</p>
+                <p>Wanting to take some of that weight.</p>
+                <p>Wanting to be there.</p>
+                <p>And understanding that sometimes being there means stepping back.</p>
+                <p>That’s what I did.</p>
+                <p>Not because I wanted to.</p>
+                <p>But because I loved you enough to respect your healing.</p>
+                <p>I told you I’d step back.</p>
+                <p>That when you were ready…</p>
+                <p>I’d be here.</p>
+                <p>Because when things break…</p>
+                <p>I stay.</p>
+                <p>That’s who I am.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 15 —</div>
+    </div>
+
+    <div class="page" id="page-16">
+        <div class="page-inner">
+            <h2 class="chapter-title">Hold Her</h2>
+            <div class="chapter-content">
+                <p>By then I was listening differently.</p>
+                <p>Not just to your words.</p>
+                <p>To your heart.</p>
+                <p>And I could hear it.</p>
+                <p>The guardedness.</p>
+                <p>The protection.</p>
+                <p>The way you kept parts of yourself locked away because life had taught you to.</p>
+                <p>I never judged you for it.</p>
+                <p>I understood it.</p>
+                <p>Because hurt teaches us how to survive.</p>
+                <p>But underneath those walls…</p>
+                <p>I could feel something else.</p>
+                <p>A softness.</p>
+                <p>A longing.</p>
+                <p>A need to feel safe enough to let go.</p>
+                <p>And I realised something.</p>
+                <p>You didn’t need fixing.</p>
+                <p>You didn’t need saving.</p>
+                <p>You just needed someone steady enough to hold you without asking you to be anything other than yourself.</p>
+                <p>And I wanted to be that.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 16 —</div>
+    </div>
+
+    <div class="page" id="page-17">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Would Say Yes To You If You Say Yes To Me</h2>
+            <div class="chapter-content">
+                <p>Even through all the uncertainty…</p>
+                <p>one truth stayed the same.</p>
+                <p>If you asked me…</p>
+                <p>my answer was yes.</p>
+                <p>Yes to knowing you deeper.</p>
+                <p>Yes to trying.</p>
+                <p>Yes to the risk.</p>
+                <p>Yes to the possibility of us.</p>
+                <p>Not because things were perfect.</p>
+                <p>But because what we had was real.</p>
+                <p>Our connection.</p>
+                <p>Our communication.</p>
+                <p>The way we kept finding each other even through the chaos.</p>
+                <p>It meant something.</p>
+                <p>And as we worked through everything life was throwing at us…</p>
+                <p>I started understanding more.</p>
+                <p>Understanding you.</p>
+                <p>Understanding your fears.</p>
+                <p>And understanding that sometimes love starts long before the moment two people finally admit it.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 17 —</div>
+    </div>
+
+    <div class="page" id="page-18">
+        <div class="page-inner">
+            <h2 class="chapter-title">Let Me Love You</h2>
+            <div class="chapter-content">
+                <p>By now I could see more clearly.</p>
+                <p>What you were carrying.</p>
+                <p>What had shaped you.</p>
+                <p>What made you cautious.</p>
+                <p>And instead of running from it…</p>
+                <p>I leaned in.</p>
+                <p>Not to change you.</p>
+                <p>Not to push you.</p>
+                <p>But to stand beside you.</p>
+                <p>Slowly.</p>
+                <p>Steadily.</p>
+                <p>Patiently.</p>
+                <p>I wanted you to know that love with me wasn’t pressure.</p>
+                <p>It was safety.</p>
+                <p>That I wasn’t against you.</p>
+                <p>I was with you.</p>
+                <p>Always.</p>
+                <p>And every step we took, no matter how small, only made me more certain.</p>
+                <p>I wanted to love you the way you needed to be loved.</p>
+                <p>Not rushed.</p>
+                <p>Not forced.</p>
+                <p>Just real.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 18 —</div>
+    </div>
+
+    <div class="page" id="page-19">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Got You</h2>
+            <div class="chapter-content">
+                <p>This was the promise before the promise.</p>
+                <p>The part where my heart had already decided.</p>
+                <p>I saw your pain.</p>
+                <p>I saw your battles.</p>
+                <p>And I wanted you to know you didn’t have to carry them alone anymore.</p>
+                <p>I’ve got you.</p>
+                <p>Not only on the easy days.</p>
+                <p>But on the hard ones.</p>
+                <p>The messy ones.</p>
+                <p>The nights where everything feels too heavy.</p>
+                <p>The days where grief creeps in and steals your breath.</p>
+                <p>I wanted to walk through it with you.</p>
+                <p>To stand beside you when the world closed in.</p>
+                <p>To hold the light for you until you could find your way through the dark again.</p>
+                <p>Because by then…</p>
+                <p>this wasn’t about whether I loved you.</p>
+                <p>It was about whether you could finally believe that someone could love you like this.</p>
+                <p>And I hoped one day…</p>
+                <p>you would.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 19 —</div>
+    </div>
+
+    <!-- Part Three -->
+    <div class="page" id="page-20">
+        <div class="page-inner title-page">
+            <div class="part-header">Part Three — The Falling</div>
+            <div class="part-intro">
+                <p>Somewhere between all the waiting, the wondering, and the healing…</p>
+                <p>something shifted.</p>
+                <p>It stopped feeling like we were standing on opposite sides of uncertainty.</p>
+                <p>And started feeling like we were slowly walking toward each other.</p>
+                <p>Not all at once.</p>
+                <p>Not loudly.</p>
+                <p>But enough to feel it.</p>
+                <p>This was the part where love stopped being an idea.</p>
+                <p>And started becoming something we could touch.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 20 —</div>
+    </div>
+
+    <div class="page" id="page-21">
+        <div class="page-inner">
+            <h2 class="chapter-title">Don’t Want Anyone But You</h2>
+            <div class="chapter-content">
+                <p>By now, my heart had stopped searching.</p>
+                <p>Every beat.</p>
+                <p>Every breath.</p>
+                <p>Every quiet moment somehow led back to you.</p>
+                <p>And the truth became impossible to ignore.</p>
+                <p>I didn’t want anyone but you.</p>
+                <p>Not because you filled some empty space in me.</p>
+                <p>But because being close to you felt right.</p>
+                <p>Natural.</p>
+                <p>Like something my soul had recognised before my mind caught up.</p>
+                <p>I loved being there for you.</p>
+                <p>The little moments.</p>
+                <p>The hard moments.</p>
+                <p>The ones where you needed distraction, comfort, or simply someone beside you.</p>
+                <p>It never felt like a burden.</p>
+                <p>It felt like purpose.</p>
+                <p>You had become my light in places I didn’t realise were still dark.</p>
+                <p>And without even asking for it…</p>
+                <p>you had my heart.</p>
+                <p>Completely.</p>
+                <p>No conditions.</p>
+                <p>No hesitation.</p>
+                <p>Take my heart.</p>
+                <p>It’s yours to keep.</p>
+                <p>Because by then, it already belonged to you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 21 —</div>
+    </div>
+
+    <div class="page" id="page-22">
+        <div class="page-inner">
+            <h2 class="chapter-title">Passenger Princess</h2>
+            <div class="chapter-content">
+                <p>Then came the trip.</p>
+                <p>And with it, memories I knew I’d carry forever.</p>
+                <p>There was something about watching you in those moments, free, unfiltered, completely yourself.</p>
+                <p>Saying whatever came to your mind.</p>
+                <p>Laughing without caring who heard.</p>
+                <p>Living in the moment like it belonged to you.</p>
+                <p>And I loved that.</p>
+                <p>I loved how alive you were.</p>
+                <p>How easy you made everything feel.</p>
+                <p>Driving around with you beside me felt different.</p>
+                <p>Simple, but unforgettable.</p>
+                <p>The road stretched out in front of us, but it wasn’t the destination that mattered.</p>
+                <p>It was you.</p>
+                <p>The way your energy filled the space.</p>
+                <p>The way your laughter made everything feel lighter.</p>
+                <p>That trip gave me something I didn’t even realise I needed.</p>
+                <p>Proof.</p>
+                <p>Proof that being with you felt easy.</p>
+                <p>That even silence beside you felt full.</p>
+                <p>That these moments weren’t random.</p>
+                <p>They were becoming part of us.</p>
+                <p>And when I think back to that trip now…</p>
+                <p>it still feels like bliss.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 22 —</div>
+    </div>
+
+    <div class="page" id="page-23">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Make Me Happy</h2>
+            <div class="chapter-content">
+                <p>There are moments in life where you suddenly understand why everything before had to happen.</p>
+                <p>The heartbreak.</p>
+                <p>The losses.</p>
+                <p>The waiting.</p>
+                <p>The lessons.</p>
+                <p>And with you…</p>
+                <p>I started seeing it.</p>
+                <p>Maybe the past had shaped me for this.</p>
+                <p>For you.</p>
+                <p>Because when I was with you, happiness felt effortless.</p>
+                <p>Real.</p>
+                <p>Not forced.</p>
+                <p>Not temporary.</p>
+                <p>Just real.</p>
+                <p>And one night we stayed awake until four in the morning.</p>
+                <p>Talking.</p>
+                <p>Laughing.</p>
+                <p>Flirting.</p>
+                <p>Letting the hours disappear without even noticing.</p>
+                <p>That kind of connection can’t be faked.</p>
+                <p>That kind of comfort is rare.</p>
+                <p>And in those hours, with the world asleep around us, your heartbeat started feeling like home.</p>
+                <p>I remember thinking…</p>
+                <p>I could do this for years.</p>
+                <p>I could stay here, in this feeling, with you.</p>
+                <p>And never get tired of it.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 23 —</div>
+    </div>
+
+    <div class="page" id="page-24">
+        <div class="page-inner">
+            <h2 class="chapter-title">On My Mind</h2>
+            <div class="chapter-content">
+                <p>By now, I wasn’t trying so hard to hide it anymore.</p>
+                <p>The walls I had kept up were starting to come down.</p>
+                <p>There was still no pressure.</p>
+                <p>No need to force anything.</p>
+                <p>No need to define it before it was ready.</p>
+                <p>But I was letting go of holding back.</p>
+                <p>Because there was no denying the truth anymore.</p>
+                <p>You were on my mind.</p>
+                <p>Constantly.</p>
+                <p>Not in a way that consumed me.</p>
+                <p>In a way that grounded me.</p>
+                <p>Like every part of my day carried traces of you.</p>
+                <p>And the more I let myself feel it…</p>
+                <p>the clearer everything became.</p>
+                <p>I was falling.</p>
+                <p>Not into chaos.</p>
+                <p>Into something steady.</p>
+                <p>Into you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 24 —</div>
+    </div>
+
+    <div class="page" id="page-25">
+        <div class="page-inner">
+            <h2 class="chapter-title">I’m Into You</h2>
+            <div class="chapter-content">
+                <p>There was a point where I started letting myself dream.</p>
+                <p>Just a little.</p>
+                <p>About what this could become.</p>
+                <p>About where this could go.</p>
+                <p>Because what we had built wasn’t surface-level anymore.</p>
+                <p>It had depth.</p>
+                <p>It had honesty.</p>
+                <p>It had that rare kind of connection where hours could disappear and still not feel like enough.</p>
+                <p>I loved spending time with you.</p>
+                <p>All of it.</p>
+                <p>The late nights.</p>
+                <p>The endless conversations.</p>
+                <p>Learning the small details about you.</p>
+                <p>Understanding the way your mind worked.</p>
+                <p>The way your heart worked.</p>
+                <p>And every moment only pulled me deeper.</p>
+                <p>I was into you.</p>
+                <p>Not for the rush.</p>
+                <p>Not for the excitement.</p>
+                <p>For the realness of it.</p>
+                <p>For who you are.</p>
+                <p>For how safe it felt to know you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 25 —</div>
+    </div>
+
+    <div class="page" id="page-26">
+        <div class="page-inner">
+            <h2 class="chapter-title">Don’t Wanna Mess This Up</h2>
+            <div class="chapter-content">
+                <p>That’s the thing about something real.</p>
+                <p>The more it matters…</p>
+                <p>the more careful you become.</p>
+                <p>You made everything feel new again.</p>
+                <p>The messages we sent.</p>
+                <p>The words we shared.</p>
+                <p>The little pieces of ourselves we kept giving each other.</p>
+                <p>It touched me more than I ever said.</p>
+                <p>And I felt myself falling faster.</p>
+                <p>Fast enough that it scared me.</p>
+                <p>Because I didn’t want to lose this.</p>
+                <p>Didn’t want to ruin it.</p>
+                <p>Didn’t want to move too quickly and break something fragile.</p>
+                <p>So I held back.</p>
+                <p>Just enough.</p>
+                <p>Not because I doubted you.</p>
+                <p>But because I knew how much you mattered.</p>
+                <p>And losing you by moving wrong…</p>
+                <p>felt unbearable.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 26 —</div>
+    </div>
+
+    <div class="page" id="page-27">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Can Rest With Me Tonight</h2>
+            <div class="chapter-content">
+                <p>At some point, the fighting inside us started settling.</p>
+                <p>Not the fighting between us.</p>
+                <p>The fighting within ourselves.</p>
+                <p>The fear.</p>
+                <p>The hesitation.</p>
+                <p>The overthinking.</p>
+                <p>And I realised something.</p>
+                <p>We didn’t have to keep battling to figure it all out.</p>
+                <p>We could just rest.</p>
+                <p>With each other.</p>
+                <p>In each other.</p>
+                <p>And let whatever this was unfold the way it was meant to.</p>
+                <p>That felt beautiful to me.</p>
+                <p>Because with you, I felt alive.</p>
+                <p>Like my soul could exhale.</p>
+                <p>Like all the noise in the world quietened when you were close.</p>
+                <p>And hearing your name in that song felt like a sign I couldn’t ignore.</p>
+                <p>Journee.</p>
+                <p>Even your name carried movement.</p>
+                <p>A path.</p>
+                <p>A story.</p>
+                <p>And by then I knew…</p>
+                <p>wherever this journey was leading…</p>
+                <p>I wanted to walk it with you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 27 —</div>
+    </div>
+
+    <div class="page" id="page-28">
+        <div class="page-inner">
+            <h2 class="chapter-title">Can’t Let You Go</h2>
+            <div class="chapter-content">
+                <p>By now there were signs everywhere.</p>
+                <p>And they all pointed to the same truth.</p>
+                <p>This was real.</p>
+                <p>You felt like destiny.</p>
+                <p>Not because life was perfect.</p>
+                <p>But because my soul kept recognising you in everything.</p>
+                <p>Your energy.</p>
+                <p>Your presence.</p>
+                <p>The way you moved through me even when you weren’t there.</p>
+                <p>It was addictive.</p>
+                <p>Not in a reckless way.</p>
+                <p>In the way love becomes part of your bloodstream.</p>
+                <p>Part of your rhythm.</p>
+                <p>Part of your breath.</p>
+                <p>And I knew then,</p>
+                <p>I couldn’t let you go.</p>
+                <p>Not because I wanted to possess you.</p>
+                <p>But because you had become part of me.</p>
+                <p>My love.</p>
+                <p>My peace.</p>
+                <p>My soul.</p>
+                <p>And every inch of me was already reaching for you.</p>
+                <p>Because somewhere in all of this…</p>
+                <p>you had become the only one I needed.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 28 —</div>
+    </div>
+
+    <!-- Part Four -->
+    <div class="page" id="page-29">
+        <div class="page-inner title-page">
+            <div class="part-header">Part Four — Surrender</div>
+            <div class="part-intro">
+                <p>There comes a moment in love where you stop fighting what you feel.</p>
+                <p>Not because the fear disappears.</p>
+                <p>But because the love becomes louder than the fear.</p>
+                <p>That’s what this was.</p>
+                <p>Surrender.</p>
+                <p>Not giving up.</p>
+                <p>Giving in.</p>
+                <p>To you.</p>
+                <p>To us.</p>
+                <p>To everything my heart had been trying to say long before I had the courage to speak it.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 29 —</div>
+    </div>
+
+    <div class="page" id="page-30">
+        <div class="page-inner">
+            <h2 class="chapter-title">Take Your Pain Away</h2>
+            <div class="chapter-content">
+                <p>By now, loving you wasn’t just about the good moments.</p>
+                <p>It was about the hard ones too.</p>
+                <p>The days where your mind felt heavy.</p>
+                <p>The nights where your heart was carrying more than words could explain.</p>
+                <p>Those were the moments I wanted you to lean into me.</p>
+                <p>Because if you were hurting…</p>
+                <p>I wanted to carry some of it.</p>
+                <p>I wanted to stand in the fire if it meant keeping you safe.</p>
+                <p>Not because I thought I could fix everything.</p>
+                <p>But because love means showing up in the pain.</p>
+                <p>And if your thoughts ran wild…</p>
+                <p>if the world felt too loud…</p>
+                <p>I wanted you to know there was always one place you could run.</p>
+                <p>My arms.</p>
+                <p>Where you didn’t have to be strong.</p>
+                <p>Where you didn’t have to pretend.</p>
+                <p>Where you could simply fall apart if you needed to…</p>
+                <p>and I’d still be there holding you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 30 —</div>
+    </div>
+
+    <div class="page" id="page-31">
+        <div class="page-inner">
+            <h2 class="chapter-title">Love Slow Like Sin</h2>
+            <div class="chapter-content">
+                <p>There was something sacred about slowing down with you.</p>
+                <p>Not rushing.</p>
+                <p>Not forcing.</p>
+                <p>Just feeling.</p>
+                <p>Every heartbeat.</p>
+                <p>Every breath.</p>
+                <p>Every inch of closeness.</p>
+                <p>When we cuddled, the world disappeared.</p>
+                <p>It’s hard to explain that kind of peace.</p>
+                <p>The kind where time softens.</p>
+                <p>Where your body relaxes because it knows it’s safe.</p>
+                <p>That’s what you became for me.</p>
+                <p>Safety.</p>
+                <p>Warmth.</p>
+                <p>Home.</p>
+                <p>And every time I held you close, I felt something deeper than passion.</p>
+                <p>Something heavier.</p>
+                <p>Something eternal.</p>
+                <p>Like my soul was memorising yours.</p>
+                <p>And in those moments, I didn’t need anything else.</p>
+                <p>Just you.</p>
+                <p>Slowly.</p>
+                <p>Completely.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 31 —</div>
+    </div>
+
+    <div class="page" id="page-32">
+        <div class="page-inner">
+            <h2 class="chapter-title">Slow Like That</h2>
+            <div class="chapter-content">
+                <p>Love doesn’t always arrive in a rush.</p>
+                <p>Sometimes it builds quietly.</p>
+                <p>Steadily.</p>
+                <p>The way ours did.</p>
+                <p>Piece by piece.</p>
+                <p>Trust by trust.</p>
+                <p>Touch by touch.</p>
+                <p>And I loved that about us.</p>
+                <p>That we didn’t force this.</p>
+                <p>We let it breathe.</p>
+                <p>Let it unfold naturally.</p>
+                <p>And because of that, it felt stronger.</p>
+                <p>More honest.</p>
+                <p>Like every step forward mattered because we chose it carefully.</p>
+                <p>Slow like that.</p>
+                <p>And somehow, the slower we went…</p>
+                <p>the deeper I fell.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 32 —</div>
+    </div>
+
+    <div class="page" id="page-33">
+        <div class="page-inner">
+            <h2 class="chapter-title">Just Us</h2>
+            <div class="chapter-content">
+                <p>Even before we became us…</p>
+                <p>I was there.</p>
+                <p>In every way I knew how to be.</p>
+                <p>Supporting you.</p>
+                <p>Standing beside you.</p>
+                <p>Holding space for you.</p>
+                <p>And I often wondered if you could feel it.</p>
+                <p>Could you feel my heart reaching for you even when we weren’t together?</p>
+                <p>Could you hear it calling your name in the quiet?</p>
+                <p>Because even in distance, even in uncertainty…</p>
+                <p>there was always this invisible thread between us.</p>
+                <p>Pulling.</p>
+                <p>Connecting.</p>
+                <p>Holding.</p>
+                <p>And maybe that’s what love is sometimes.</p>
+                <p>Not always spoken.</p>
+                <p>But always there.</p>
+                <p>Waiting.</p>
+                <p>Steady.</p>
+                <p>Just us.</p>
+                <p>Even before we knew it.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 33 —</div>
+    </div>
+
+    <div class="page" id="page-34">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Are My Person</h2>
+            <div class="chapter-content">
+                <p>This was the moment the truth settled in.</p>
+                <p>Clear.</p>
+                <p>Simple.</p>
+                <p>Certain.</p>
+                <p>You are my person.</p>
+                <p>Not a passing chapter.</p>
+                <p>Not temporary.</p>
+                <p>Not something I could walk away from.</p>
+                <p>You.</p>
+                <p>The love of my life.</p>
+                <p>The one I wanted beside me when the world was good…</p>
+                <p>and when it wasn’t.</p>
+                <p>The one I wanted to build with.</p>
+                <p>Grow with.</p>
+                <p>Wake up beside.</p>
+                <p>Fight for.</p>
+                <p>Choose every single day.</p>
+                <p>And for the first time…</p>
+                <p>I could picture forever.</p>
+                <p>Not as a fantasy.</p>
+                <p>As you.</p>
+                <p>One day making you my wife didn’t feel like a distant thought anymore.</p>
+                <p>It felt like a promise my heart was already making.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 34 —</div>
+    </div>
+
+    <div class="page" id="page-35">
+        <div class="page-inner">
+            <h2 class="chapter-title">Speed of Light</h2>
+            <div class="chapter-content">
+                <p>By then I knew one thing for certain.</p>
+                <p>No matter what happened…</p>
+                <p>I’d be there.</p>
+                <p>If you needed me, I’d come.</p>
+                <p>No hesitation.</p>
+                <p>No questions.</p>
+                <p>At the speed of light.</p>
+                <p>Because loving you meant being reliable.</p>
+                <p>Being safe.</p>
+                <p>Being steady.</p>
+                <p>It meant knowing my shoulder would always be there when life felt too much.</p>
+                <p>And I wanted you to trust that.</p>
+                <p>Trust me.</p>
+                <p>Not only when things were easy.</p>
+                <p>But especially when they weren’t.</p>
+                <p>Because that’s when love matters most.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 35 —</div>
+    </div>
+
+    <div class="page" id="page-36">
+        <div class="page-inner">
+            <h2 class="chapter-title">Don't Fix Me, Love Me</h2>
+            <div class="chapter-content">
+                <p>This song felt like it spoke directly to everything I wanted you to know.</p>
+                <p>I wasn’t here to fix you.</p>
+                <p>I never wanted to.</p>
+                <p>Because you were never broken.</p>
+                <p>You were carrying pain.</p>
+                <p>Protecting yourself.</p>
+                <p>Surviving.</p>
+                <p>And I understood that.</p>
+                <p>I heard every word you didn’t say.</p>
+                <p>The silence.</p>
+                <p>The hesitation.</p>
+                <p>The guarded parts of you.</p>
+                <p>And I didn’t judge any of it.</p>
+                <p>I loved it.</p>
+                <p>Because it made you you.</p>
+                <p>And all I wanted was for you to know…</p>
+                <p>you didn’t have to become someone else to be loved by me.</p>
+                <p>You already were.</p>
+                <p>Exactly as you are.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 36 —</div>
+    </div>
+
+    <div class="page" id="page-37">
+        <div class="page-inner">
+            <h2 class="chapter-title">Ways to Your Heart</h2>
+            <div class="chapter-content">
+                <p>By now I knew there was no going back.</p>
+                <p>I had never felt this before.</p>
+                <p>Not like this.</p>
+                <p>Not this deeply.</p>
+                <p>You became the one I wanted to stay for.</p>
+                <p>The one worth staying for.</p>
+                <p>And every touch between us carried something heavier than desire.</p>
+                <p>It carried meaning.</p>
+                <p>Every time you held me close, I felt it.</p>
+                <p>Peace mixed with passion.</p>
+                <p>Safety mixed with fire.</p>
+                <p>And that combination was dangerous in the best way.</p>
+                <p>Because every touch pulled me deeper.</p>
+                <p>Every moment in your arms made the rest of the world disappear.</p>
+                <p>And every time you let me hold you…</p>
+                <p>I felt like I was exactly where I was meant to be.</p>
+            </div>
+        <div class="page-footer">— 37 —</div>
+    </div>
+
+    <div class="page" id="page-38">
+        <div class="page-inner">
+            <h2 class="chapter-title">Meet Me In My Dreams</h2>
+            <div class="chapter-content">
+                <p>Then you started following me into sleep.</p>
+                <p>Showing up in my dreams.</p>
+                <p>Not as random pieces of thought.</p>
+                <p>But as presence.</p>
+                <p>As longing.</p>
+                <p>As something my subconscious had already accepted.</p>
+                <p>Even when I slept, my heart kept reaching for you.</p>
+                <p>And waking up after those dreams always left me feeling the same.</p>
+                <p>Wanting you closer.</p>
+                <p>Wanting more.</p>
+                <p>Because by then…</p>
+                <p>you lived in every part of me.</p>
+                <p>My waking hours.</p>
+                <p>My quiet thoughts.</p>
+                <p>My dreams.</p>
+                <p>You were everywhere.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 38 —</div>
+    </div>
+
+    <div class="page" id="page-39">
+        <div class="page-inner">
+            <h2 class="chapter-title">Love You For A Lifetime</h2>
+            <div class="chapter-content">
+                <p>This was the moment I stopped pretending.</p>
+                <p>Stopped trying to keep parts of myself hidden.</p>
+                <p>Because the truth was too big now.</p>
+                <p>I was in love with you.</p>
+                <p>Madly.</p>
+                <p>Completely.</p>
+                <p>And I couldn’t hold it back anymore.</p>
+                <p>I had already given you all of me.</p>
+                <p>My heart.</p>
+                <p>My trust.</p>
+                <p>My softness.</p>
+                <p>My loyalty.</p>
+                <p>Everything.</p>
+                <p>And I knew if this became what I hoped it would become…</p>
+                <p>I wouldn’t just love you for now.</p>
+                <p>I’d love you for a lifetime.</p>
+                <p>That’s how real it felt.</p>
+                <p>That’s how deep it had become.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 39 —</div>
+    </div>
+
+    <div class="page" id="page-40">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Make Me a Better Man</h2>
+            <div class="chapter-content">
+                <p>Loving you changed me.</p>
+                <p>Not because you asked me to.</p>
+                <p>But because loving you made me want to become more.</p>
+                <p>More patient.</p>
+                <p>More open.</p>
+                <p>More honest.</p>
+                <p>More gentle.</p>
+                <p>You pulled the best parts of me back to the surface.</p>
+                <p>Parts I thought life had buried.</p>
+                <p>And standing there, on the edge of saying I love you…</p>
+                <p>I realised something.</p>
+                <p>You didn’t just make me feel loved.</p>
+                <p>You made me feel better.</p>
+                <p>Stronger.</p>
+                <p>More whole.</p>
+                <p>And maybe that’s what real love does.</p>
+                <p>It calls you higher.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 40 —</div>
+    </div>
+
+    <div class="page" id="page-41">
+        <div class="page-inner">
+            <h2 class="chapter-title">Caught in Moments</h2>
+            <div class="chapter-content">
+                <p>There are moments that stay with you forever.</p>
+                <p>Not because they’re loud.</p>
+                <p>But because they’re intimate.</p>
+                <p>Sacred.</p>
+                <p>The kind of moments where all you want is closeness.</p>
+                <p>Your body against mine.</p>
+                <p>My arms wrapped around you.</p>
+                <p>My lips close to your ear, whispering your name softly.</p>
+                <p>Wanting to hold you all night.</p>
+                <p>To love you gently.</p>
+                <p>To memorise every part of you.</p>
+                <p>To create a memory so deep it never fades.</p>
+                <p>Because by then, every moment with you mattered.</p>
+                <p>And every touch felt like forever.</p>
+            </div>
+        <div class="page-footer">— 41 —</div>
+    </div>
+
+    <!-- Part Five -->
+    <div class="page" id="page-42">
+        <div class="page-inner title-page">
+            <div class="part-header">Part Five — Choosing You</div>
+            <div class="part-intro">
+                <p>Love reaches a point where it asks something of you.</p>
+                <p>Not just to feel.</p>
+                <p>But to choose.</p>
+                <p>To stand still long enough to say:</p>
+                <p>This is the person I want.</p>
+                <p>Not because it’s easy.</p>
+                <p>Not because there’s no risk.</p>
+                <p>But because your heart knows.</p>
+                <p>And mine knew.</p>
+                <p>It was you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 42 —</div>
+    </div>
+
+    <div class="page" id="page-43">
+        <div class="page-inner">
+            <h2 class="chapter-title">Promises</h2>
+            <div class="chapter-content">
+                <p>By now there was no confusion left in me.</p>
+                <p>I had completely fallen in love with you.</p>
+                <p>Not halfway.</p>
+                <p>Not cautiously.</p>
+                <p>Completely.</p>
+                <p>And with that love came promises.</p>
+                <p>The kind you don’t make lightly.</p>
+                <p>The kind you feel in your bones before you ever say them out loud.</p>
+                <p>I promised myself I’d love you fully.</p>
+                <p>That I’d stand beside you through thick and thin.</p>
+                <p>Through joy.</p>
+                <p>Through grief.</p>
+                <p>Through the messy parts of life that test people.</p>
+                <p>Because loving you wasn’t just about the beautiful moments anymore.</p>
+                <p>It was about building something strong enough to survive the storms.</p>
+                <p>And I wanted to be that for you.</p>
+                <p>Steady.</p>
+                <p>Loyal.</p>
+                <p>Safe.</p>
+                <p>A place you could always return to.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 43 —</div>
+    </div>
+
+    <div class="page" id="page-44">
+        <div class="page-inner">
+            <h2 class="chapter-title">Cuddle</h2>
+            <div class="chapter-content">
+                <p>There’s something so simple about wanting to hold the person you love.</p>
+                <p>And yet…</p>
+                <p>it can mean everything.</p>
+                <p>By this stage, cuddling with you lived in my mind more often than I’d admit.</p>
+                <p>Not for anything complicated.</p>
+                <p>Just closeness.</p>
+                <p>Warmth.</p>
+                <p>That quiet kind of intimacy where words disappear and all that matters is being near.</p>
+                <p>The thought of wrapping my arms around you.</p>
+                <p>Feeling you melt into me.</p>
+                <p>Hearing your breathing slow.</p>
+                <p>That felt like peace.</p>
+                <p>Because with you, closeness wasn’t just physical.</p>
+                <p>It was emotional.</p>
+                <p>Spiritual.</p>
+                <p>Like our bodies already knew what our hearts had been building all along.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 44 —</div>
+    </div>
+
+    <div class="page" id="page-45">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Got Me</h2>
+            <div class="chapter-content">
+                <p>This was it.</p>
+                <p>The choice.</p>
+                <p>The surrender.</p>
+                <p>The truth.</p>
+                <p>You got me.</p>
+                <p>One hundred percent.</p>
+                <p>No part of me left behind.</p>
+                <p>No backup plan.</p>
+                <p>No walls.</p>
+                <p>I had chosen you completely.</p>
+                <p>And maybe the most terrifying part was how naturally it happened.</p>
+                <p>You pulled emotions out of me I thought had been buried.</p>
+                <p>Softness.</p>
+                <p>Passion.</p>
+                <p>Hope.</p>
+                <p>Vulnerability.</p>
+                <p>You made me feel deeply again.</p>
+                <p>And for the first time in a long time…</p>
+                <p>that didn’t scare me.</p>
+                <p>Because if anyone was going to hold my heart</p>
+                <p>I wanted it to be you.</p>
+            </div>
+        <div class="page-footer">— 45 —</div>
+    </div>
+
+    <div class="page" id="page-46">
+        <div class="page-inner">
+            <h2 class="chapter-title">With You Always</h2>
+            <div class="chapter-content">
+                <p>There was a time I stopped looking for somewhere to rest.</p>
+                <p>Stopped expecting life to offer me peace.</p>
+                <p>And then you appeared.</p>
+                <p>Not loudly.</p>
+                <p>Not dramatically.</p>
+                <p>Just there.</p>
+                <p>And somehow…</p>
+                <p>you felt like home.</p>
+                <p>Not because you solved everything.</p>
+                <p>But because being beside you made everything feel less heavy.</p>
+                <p>You became my reason to believe again.</p>
+                <p>That love could still be good.</p>
+                <p>That trust could still be safe.</p>
+                <p>That forever might actually exist.</p>
+                <p>And I knew then</p>
+                <p>joy, pain, storms, sunshine…</p>
+                <p>whatever life brought us</p>
+                <p>I wanted to walk through all of it with you.</p>
+                <p>Always.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 46 —</div>
+    </div>
+
+    <div class="page" id="page-47">
+        <div class="page-inner">
+            <h2 class="chapter-title">Love the Hell Out of Me</h2>
+            <div class="chapter-content">
+                <p>This was when I started feeling it from you too.</p>
+                <p>Your love.</p>
+                <p>Your softness.</p>
+                <p>Your choosing.</p>
+                <p>And it changed everything.</p>
+                <p>Because for so long I had carried my love quietly, hoping, waiting, believing.</p>
+                <p>And then suddenly…</p>
+                <p>it was right there in front of me.</p>
+                <p>Everything I had wanted.</p>
+                <p>Everything I had hoped for.</p>
+                <p>You.</p>
+                <p>Loving me.</p>
+                <p>And there’s something almost overwhelming about being loved by the person you’ve already given your heart to.</p>
+                <p>It felt like breathing after holding my breath for too long.</p>
+                <p>Like finally arriving.</p>
+                <p>Like the universe had stopped resisting us.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 47 —</div>
+    </div>
+
+    <div class="page" id="page-48">
+        <div class="page-inner">
+            <h2 class="chapter-title">Worship Her</h2>
+            <div class="chapter-content">
+                <p>You gave me more than love.</p>
+                <p>You gave me life.</p>
+                <p>You lifted me in ways you’ll probably never fully understand.</p>
+                <p>You reminded me what it felt like to be alive again.</p>
+                <p>To feel deeply.</p>
+                <p>To dream.</p>
+                <p>To believe.</p>
+                <p>And because of that, I couldn’t help but honour you.</p>
+                <p>Not in some perfect way.</p>
+                <p>But in the way love teaches you to.</p>
+                <p>By seeing you.</p>
+                <p>By valuing you.</p>
+                <p>By appreciating every part of you.</p>
+                <p>You became my fire.</p>
+                <p>The thing that reignited everything in me.</p>
+                <p>And I knew I was made to love you with reverence.</p>
+                <p>To cherish you.</p>
+                <p>To protect you.</p>
+                <p>To pour into you the way you had poured life back into me.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 48 —</div>
+    </div>
+
+    <div class="page" id="page-49">
+        <div class="page-inner">
+            <h2 class="chapter-title">Because You Loved Me</h2>
+            <div class="chapter-content">
+                <p>Love changes us.</p>
+                <p>And your love changed me.</p>
+                <p>When I felt weak, you became strength.</p>
+                <p>When life weighed heavy, the thought of you lifted me.</p>
+                <p>Even on bad days, you had this way of pulling me through.</p>
+                <p>Without even trying.</p>
+                <p>Just knowing you were there.</p>
+                <p>Just knowing your heart was connected to mine.</p>
+                <p>That was enough.</p>
+                <p>And I realised something important</p>
+                <p>love isn’t always loud.</p>
+                <p>Sometimes it’s simply the quiet knowledge that someone exists in your corner.</p>
+                <p>That’s what you became.</p>
+                <p>My corner.</p>
+                <p>My support.</p>
+                <p>My strength.</p>
+                <p>Because you loved me.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 49 —</div>
+    </div>
+
+    <div class="page" id="page-50">
+        <div class="page-inner">
+            <h2 class="chapter-title">Love Me Like You Do</h2>
+            <div class="chapter-content">
+                <p>By now my whole world had changed.</p>
+                <p>And you were at the centre of it.</p>
+                <p>Your love brought colour back into places that had gone grey.</p>
+                <p>Brought warmth back into places that had gone cold.</p>
+                <p>Only you could set my heart on fire the way you did.</p>
+                <p>And every touch.</p>
+                <p>Every look.</p>
+                <p>Every moment between us carried electricity.</p>
+                <p>Not just desire.</p>
+                <p>Connection.</p>
+                <p>Soul-deep connection.</p>
+                <p>You brought my world to life.</p>
+                <p>And by now…</p>
+                <p>I couldn’t imagine that world without you.</p>
+                <p>Because loving you wasn’t just part of my life anymore.</p>
+                <p>It had become the heartbeat of it.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 50 —</div>
+    </div>
+
+    <!-- Part Six -->
+    <div class="page" id="page-51">
+        <div class="page-inner title-page">
+            <div class="part-header">Part Six — Soul Ties</div>
+            <div class="part-intro">
+                <p>By now, love had moved beyond the surface.</p>
+                <p>Beyond attraction.</p>
+                <p>Beyond uncertainty.</p>
+                <p>Beyond even choice.</p>
+                <p>It had rooted itself somewhere deeper.</p>
+                <p>Somewhere harder to explain.</p>
+                <p>Because this wasn’t just about wanting each other anymore.</p>
+                <p>This was about knowing.</p>
+                <p>Knowing that somehow, against all odds, our hearts had found exactly where they belonged.</p>
+                <p>And once a love reaches that place…</p>
+                <p>it becomes soul deep.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 51 —</div>
+    </div>
+
+    <div class="page" id="page-52">
+        <div class="page-inner">
+            <h2 class="chapter-title">I’m All In</h2>
+            <div class="chapter-content">
+                <p>There came a point where trust stopped being a question.</p>
+                <p>And became a gift.</p>
+                <p>If it’s you…</p>
+                <p>I’m all in.</p>
+                <p>No hesitation.</p>
+                <p>No half-steps.</p>
+                <p>No looking over my shoulder.</p>
+                <p>I trust you with all my heart.</p>
+                <p>Because by now, you had shown me who you are.</p>
+                <p>Real.</p>
+                <p>Honest.</p>
+                <p>Steady.</p>
+                <p>And I felt safe enough to give you everything.</p>
+                <p>Not pieces.</p>
+                <p>Not fragments.</p>
+                <p>All of me.</p>
+                <p>Because you were giving me all of you too.</p>
+                <p>And when love is real, trust feels natural.</p>
+                <p>Not forced.</p>
+                <p>Not earned through games.</p>
+                <p>Just known.</p>
+                <p>That’s what you became to me.</p>
+                <p>Someone I could trust with my soul.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 52 —</div>
+    </div>
+
+    <div class="page" id="page-53">
+        <div class="page-inner">
+            <h2 class="chapter-title">You’re Always On My Mind</h2>
+            <div class="chapter-content">
+                <p>It didn’t matter what I was doing.</p>
+                <p>Where I was.</p>
+                <p>How busy life got.</p>
+                <p>You were there.</p>
+                <p>Always.</p>
+                <p>Running through my mind like a song I never wanted to end.</p>
+                <p>And no matter how many times I tried to focus elsewhere…</p>
+                <p>my heart kept circling back to you.</p>
+                <p>I’d close my eyes…</p>
+                <p>and there you were.</p>
+                <p>Your face.</p>
+                <p>Your smile.</p>
+                <p>Your voice.</p>
+                <p>The way you made me feel.</p>
+                <p>It had become part of me.</p>
+                <p>And I never wanted to lose that feeling.</p>
+                <p>Because your love felt real.</p>
+                <p>Real in a way I hadn’t known before.</p>
+                <p>Real enough to quiet the chaos in me.</p>
+                <p>Real enough to feel like home.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 53 —</div>
+    </div>
+
+    <div class="page" id="page-54">
+        <div class="page-inner">
+            <h2 class="chapter-title">My Love Don’t Need a Reason</h2>
+            <div class="chapter-content">
+                <p>The truth is…</p>
+                <p>I don’t need a reason to love you.</p>
+                <p>I just do.</p>
+                <p>In a hundred different ways.</p>
+                <p>For a hundred different reasons.</p>
+                <p>And for no reason at all.</p>
+                <p>I love your mind.</p>
+                <p>Your softness.</p>
+                <p>Your fire.</p>
+                <p>Your strength.</p>
+                <p>Your guarded heart.</p>
+                <p>Your laughter.</p>
+                <p>Your soul.</p>
+                <p>Loving you feels right.</p>
+                <p>Not complicated.</p>
+                <p>Not forced.</p>
+                <p>Just right.</p>
+                <p>Like something my heart understands without needing to explain.</p>
+            </div>
+        <div class="page-footer">— 54 —</div>
+    </div>
+
+    <div class="page" id="page-55">
+        <div class="page-inner">
+            <h2 class="chapter-title">Love Without Condition</h2>
+            <div class="chapter-content">
+                <p>This is where love became unconditional.</p>
+                <p>No conditions.</p>
+                <p>No limits.</p>
+                <p>No restrictions.</p>
+                <p>I love you exactly as you are.</p>
+                <p>On your good days.</p>
+                <p>On your hard days.</p>
+                <p>In your softness.</p>
+                <p>In your storms.</p>
+                <p>I’m not scared of your emotions.</p>
+                <p>I’m not afraid of your pain.</p>
+                <p>Because loving you means standing beside all of it.</p>
+                <p>And I’m here to stay.</p>
+                <p>Not only when it’s easy.</p>
+                <p>But especially when it isn’t.</p>
+                <p>That’s what love should be.</p>
+                <p>A place where you never have to earn being held.</p>
+            </div>
+        <div class="page-footer">— 55 —</div>
+    </div>
+
+    <div class="page" id="page-56">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Choose You</h2>
+            <div class="chapter-content">
+                <p>By now choosing you wasn’t something I did once.</p>
+                <p>It became something I did every day.</p>
+                <p>Every morning.</p>
+                <p>Every night.</p>
+                <p>Every moment in between.</p>
+                <p>Because you changed my world.</p>
+                <p>Made everything feel beautiful again.</p>
+                <p>And the best part was how natural it all felt.</p>
+                <p>No games.</p>
+                <p>No pretending.</p>
+                <p>Just truth.</p>
+                <p>By now we understood each other.</p>
+                <p>Really understood each other.</p>
+                <p>The fears.</p>
+                <p>The scars.</p>
+                <p>The hopes.</p>
+                <p>The dreams.</p>
+                <p>And through all of it…</p>
+                <p>I kept arriving at the same place.</p>
+                <p>I choose you.</p>
+                <p>Always.</p>
+                <p>Forever.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 56 —</div>
+    </div>
+
+    <div class="page" id="page-57">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Ain’t Hard to Love</h2>
+            <div class="chapter-content">
+                <p>I wanted you to know something.</p>
+                <p>Something I hoped would settle into your heart.</p>
+                <p>You are not hard to love.</p>
+                <p>Not for me.</p>
+                <p>Not ever.</p>
+                <p>Your walls.</p>
+                <p>Your fears.</p>
+                <p>Your pain.</p>
+                <p>None of that scares me away.</p>
+                <p>Because my love is real.</p>
+                <p>And I’m not here to play games.</p>
+                <p>I’m here to stay.</p>
+                <p>And I wanted you to trust that.</p>
+                <p>Trust me.</p>
+                <p>To stop fighting what’s real long enough to feel it.</p>
+                <p>Because if you let yourself…</p>
+                <p>you’d see it.</p>
+                <p>I’m honest.</p>
+                <p>I’m here.</p>
+                <p>And I truly love you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 57 —</div>
+    </div>
+
+    <div class="page" id="page-58">
+        <div class="page-inner">
+            <h2 class="chapter-title">Made For Me</h2>
+            <div class="chapter-content">
+                <p>It still amazes me how deeply we understand each other.</p>
+                <p>How naturally we fit.</p>
+                <p>Like pieces of a story that were always meant to meet.</p>
+                <p>You know me now.</p>
+                <p>Really know me.</p>
+                <p>The parts I show.</p>
+                <p>And the parts I hide.</p>
+                <p>And somehow…</p>
+                <p>you still stay.</p>
+                <p>That’s rare.</p>
+                <p>That’s sacred.</p>
+                <p>And the truth is</p>
+                <p>you feel made for me.</p>
+                <p>Not perfect.</p>
+                <p>Not flawless.</p>
+                <p>But perfect for me.</p>
+                <p>In every way that matters.</p>
+            </div>
+        <div class="page-footer">— 58 —</div>
+    </div>
+
+    <div class="page" id="page-59">
+        <div class="page-inner">
+            <h2 class="chapter-title">Let Me Love You</h2>
+            <div class="chapter-content">
+                <p>There were still moments where I could feel your guard.</p>
+                <p>The instinct to protect yourself.</p>
+                <p>To hold back.</p>
+                <p>And I understood that.</p>
+                <p>But I wanted you to know…</p>
+                <p>you don’t have to walk home alone anymore.</p>
+                <p>If you let that guard fall…</p>
+                <p>I’ll be there.</p>
+                <p>Not to fix you.</p>
+                <p>Not to save you.</p>
+                <p>But to love you.</p>
+                <p>To help you heal.</p>
+                <p>To remind you that you deserve something lasting.</p>
+                <p>Not temporary affection.</p>
+                <p>Not half-love.</p>
+                <p>Real love.</p>
+                <p>The kind that stays.</p>
+                <p>And every conversation we had kept getting deeper.</p>
+                <p>Like our souls were meeting before our hands ever did.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 59 —</div>
+    </div>
+
+    <div class="page" id="page-60">
+        <div class="page-inner">
+            <h2 class="chapter-title">On My Mind</h2>
+            <div class="chapter-content">
+                <p>You had been on my mind for a long time.</p>
+                <p>But now…</p>
+                <p>you were the only thing there.</p>
+                <p>The centre of everything.</p>
+                <p>The thought of you brought peace.</p>
+                <p>Harmony.</p>
+                <p>Calm.</p>
+                <p>Like my spirit recognised yours.</p>
+                <p>And every time I thought about you…</p>
+                <p>it didn’t feel like obsession.</p>
+                <p>It felt like belonging.</p>
+                <p>Like my heart had found its rhythm in yours.</p>
+            </div>
+        <div class="page-footer">— 60 —</div>
+    </div>
+
+    <div class="page" id="page-61">
+        <div class="page-inner">
+            <h2 class="chapter-title">Slow Enough</h2>
+            <div class="chapter-content">
+                <p>There were so many times I wanted to ask you.</p>
+                <p>To make it official.</p>
+                <p>To stop circling around what was already so obvious.</p>
+                <p>But something told me to wait.</p>
+                <p>Not out of fear.</p>
+                <p>Out of respect.</p>
+                <p>Because this mattered.</p>
+                <p>And I wanted to do it right.</p>
+                <p>So we stayed here.</p>
+                <p>In the moment.</p>
+                <p>Taking it slow enough to build something real.</p>
+                <p>Strong enough to last.</p>
+                <p>Because some things are worth waiting for.</p>
+                <p>And you were.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 61 —</div>
+    </div>
+
+    <div class="page" id="page-62">
+        <div class="page-inner">
+            <h2 class="chapter-title">This Love Been Waiting On You</h2>
+            <div class="chapter-content">
+                <p>Every morning I woke up…</p>
+                <p>and it was still you.</p>
+                <p>Still choosing you.</p>
+                <p>Still wanting you.</p>
+                <p>Like my love had been waiting for you long before I understood what it was waiting for.</p>
+                <p>And now that I had found you…</p>
+                <p>I couldn’t imagine choosing anyone else.</p>
+                <p>I wasn’t scared anymore.</p>
+                <p>Not of the love.</p>
+                <p>Not of the future.</p>
+                <p>Because somehow…</p>
+                <p>it all kept leading back to you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 62 —</div>
+    </div>
+
+    <div class="page" id="page-63">
+        <div class="page-inner">
+            <h2 class="chapter-title">A Woman Like You Deserves Forever</h2>
+            <div class="chapter-content">
+                <p>You deserve forever.</p>
+                <p>Not halfway.</p>
+                <p>Not uncertainty.</p>
+                <p>Not temporary love.</p>
+                <p>Forever.</p>
+                <p>Because of the way you love.</p>
+                <p>The way you feel.</p>
+                <p>The way you carry yourself.</p>
+                <p>You’re one of a kind.</p>
+                <p>A treasure.</p>
+                <p>And every time your touch found me…</p>
+                <p>it healed parts of me I didn’t know were still hurting.</p>
+                <p>I wanted to be the man who gave you the forever you deserve.</p>
+                <p>The kind that stays.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 63 —</div>
+    </div>
+
+    <div class="page" id="page-64">
+        <div class="page-inner">
+            <h2 class="chapter-title">Your Heart Is Safe With Me</h2>
+            <div class="chapter-content">
+                <p>This became my promise.</p>
+                <p>The one I meant with everything I am.</p>
+                <p>Your heart is safe with me.</p>
+                <p>I will protect it.</p>
+                <p>Honour it.</p>
+                <p>Hold it carefully.</p>
+                <p>Not because it’s fragile.</p>
+                <p>But because it matters.</p>
+                <p>Because you matter.</p>
+                <p>And I’m here for the long haul.</p>
+                <p>Not leaving.</p>
+                <p>Not fading.</p>
+                <p>Not disappearing when things get hard.</p>
+                <p>I’m staying.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 64 —</div>
+    </div>
+
+    <div class="page" id="page-65">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Knew I Loved You</h2>
+            <div class="chapter-content">
+                <p>Sometimes I wonder if I knew before I knew.</p>
+                <p>Before the words.</p>
+                <p>Before the certainty.</p>
+                <p>Before everything.</p>
+                <p>Because meeting you felt familiar.</p>
+                <p>Like I had been searching for you my whole life without realising it.</p>
+                <p>And when I found you…</p>
+                <p>everything made sense.</p>
+                <p>You were my dream made real.</p>
+                <p>My soul’s answer.</p>
+                <p>The person I had been waiting on all along.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 65 —</div>
+    </div>
+
+    <div class="page" id="page-66">
+        <div class="page-inner">
+            <h2 class="chapter-title">The Way You Hold My Name</h2>
+            <div class="chapter-content">
+                <p>There’s something about the way you say my name.</p>
+                <p>Soft.</p>
+                <p>Certain.</p>
+                <p>Like it belongs somewhere safe.</p>
+                <p>And every time you do…</p>
+                <p>it takes me somewhere pure.</p>
+                <p>Peaceful.</p>
+                <p>A place I never knew existed before you.</p>
+                <p>And I want you to know</p>
+                <p>you never have to question my heart.</p>
+                <p>I’m showing up.</p>
+                <p>Every day.</p>
+                <p>Because every part of me wants your love.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 66 —</div>
+    </div>
+
+    <div class="page" id="page-67">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Need You</h2>
+            <div class="chapter-content">
+                <p>I need you.</p>
+                <p>Not in a broken way.</p>
+                <p>In a human way.</p>
+                <p>In the way water is needed.</p>
+                <p>Breath is needed.</p>
+                <p>Rain is needed.</p>
+                <p>Because your love carries me.</p>
+                <p>Your arms feel like freedom.</p>
+                <p>And in a world that can feel heavy…</p>
+                <p>you feel like mercy.</p>
+                <p>The kind that saves without asking anything back.</p>
+            </div>
+        <div class="page-footer">— 67 —</div>
+    </div>
+
+    <div class="page" id="page-68">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Found Love When I Found You</h2>
+            <div class="chapter-content">
+                <p>It became clear.</p>
+                <p>Simple.</p>
+                <p>Undeniable.</p>
+                <p>I found love when I found you.</p>
+                <p>Not before.</p>
+                <p>Not close.</p>
+                <p>Not almost.</p>
+                <p>With you.</p>
+                <p>Every heartbeat now sings your name.</p>
+                <p>Your smile.</p>
+                <p>Your laughter.</p>
+                <p>They became the melody of my life.</p>
+                <p>And somehow…</p>
+                <p>home stopped being a place.</p>
+                <p>It became you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 68 —</div>
+    </div>
+
+    <div class="page" id="page-69">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Will Always Be There For You</h2>
+            <div class="chapter-content">
+                <p>This is the vow inside the vow.</p>
+                <p>You have my heart.</p>
+                <p>And I will never let you fade away.</p>
+                <p>Whatever comes…</p>
+                <p>hold my hand.</p>
+                <p>We’ll walk through it together.</p>
+                <p>I will always be there for you.</p>
+                <p>Not just in words.</p>
+                <p>In action.</p>
+                <p>In presence.</p>
+                <p>In love.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 69 —</div>
+    </div>
+
+    <div class="page" id="page-70">
+        <div class="page-inner">
+            <h2 class="chapter-title">Only When It’s You</h2>
+            <div class="chapter-content">
+                <p>There’s something different about loving you.</p>
+                <p>Deeper.</p>
+                <p>Stronger.</p>
+                <p>When I say I love you to you…</p>
+                <p>it means more.</p>
+                <p>Because it’s not habit.</p>
+                <p>It’s truth.</p>
+                <p>It’s soul.</p>
+                <p>I let you into my heart completely.</p>
+                <p>And once you were there…</p>
+                <p>I threw away the key.</p>
+                <p>Because there was never another place I wanted to be.</p>
+            </div>
+        <div class="page-footer">— 70 —</div>
+    </div>
+
+    <div class="page" id="page-71">
+        <div class="page-inner">
+            <h2 class="chapter-title">My Forever Girlfriend</h2>
+            <div class="chapter-content">
+                <p>Even now…</p>
+                <p>you still take my breath away.</p>
+                <p>The way you look at me.</p>
+                <p>The way your arms feel around me.</p>
+                <p>The way your presence settles everything in me.</p>
+                <p>Inside your arms feels like the best place in the world.</p>
+                <p>And I know this now</p>
+                <p>I wasn’t born only to love your body.</p>
+                <p>I was born to love your heart.</p>
+                <p>The connection between us keeps blooming.</p>
+                <p>Growing.</p>
+                <p>Deepening.</p>
+                <p>And because of that…</p>
+                <p>I can see it so clearly.</p>
+                <p>You.</p>
+                <p>My forever girlfriend.</p>
+            </div>
+        <div class="page-footer">— 71 —</div>
+    </div>
+
+    <div class="page" id="page-72">
+        <div class="page-inner">
+            <h2 class="chapter-title">Closer Tonight</h2>
+            <div class="chapter-content">
+                <p>And every time you’re near me…</p>
+                <p>everything else fades.</p>
+                <p>Every second feels electric.</p>
+                <p>Pure ecstasy.</p>
+                <p>Like the world narrows down to just us.</p>
+                <p>And I never want that feeling to end.</p>
+                <p>I don’t want to come down from it.</p>
+                <p>Because when I’m close to you…</p>
+                <p>everything feels right.</p>
+                <p>Like this is where I’m meant to be.</p>
+                <p>Closer.</p>
+                <p>Tonight.</p>
+                <p>Tomorrow.</p>
+                <p>Always.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 72 —</div>
+    </div>
+
+    <!-- Part Seven -->
+    <div class="page" id="page-73">
+        <div class="page-inner title-page">
+            <div class="part-header">Part Seven — Forever Feels Right</div>
+            <div class="part-intro">
+                <p>There’s a point in love where everything stops feeling uncertain.</p>
+                <p>Not because life becomes easier.</p>
+                <p>Not because there won’t be storms.</p>
+                <p>But because your heart finally knows where it belongs.</p>
+                <p>That’s where we are now.</p>
+                <p>Not at the beginning.</p>
+                <p>Not in the middle.</p>
+                <p>But at the place where forever stops feeling like a dream…</p>
+                <p>and starts feeling like the only thing that makes sense.</p>
+                <p>Because with you…</p>
+                <p>forever feels right.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 73 —</div>
+    </div>
+
+    <div class="page" id="page-74">
+        <div class="page-inner">
+            <h2 class="chapter-title">I’ll Protect Your Heart Forever</h2>
+            <div class="chapter-content">
+                <p>If there is one promise that sits deeper than all the others, it’s this:</p>
+                <p>I will protect your heart.</p>
+                <p>Forever.</p>
+                <p>Not because it needs saving.</p>
+                <p>But because it deserves safety.</p>
+                <p>Loyalty.</p>
+                <p>Honesty.</p>
+                <p>A love deep enough to hold it with care.</p>
+                <p>Every second by your side feels like heaven to me.</p>
+                <p>Not because it’s perfect.</p>
+                <p>But because it’s you.</p>
+                <p>And loving you has taught me what devotion really looks like.</p>
+                <p>It looks like standing beside you when life is heavy.</p>
+                <p>Holding you when words don’t help.</p>
+                <p>Being steady when the world feels unsteady.</p>
+                <p>That’s what I want to be.</p>
+                <p>A place your heart can always rest.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 74 —</div>
+    </div>
+
+    <div class="page" id="page-75">
+        <div class="page-inner">
+            <h2 class="chapter-title">Consumed By You</h2>
+            <div class="chapter-content">
+                <p>There’s no other word for it now.</p>
+                <p>I am consumed by you.</p>
+                <p>Not lost.</p>
+                <p>Not drowning.</p>
+                <p>Just completely, deeply in love.</p>
+                <p>You are the first thought in my mornings.</p>
+                <p>The last thought before sleep.</p>
+                <p>And somehow…</p>
+                <p>the thoughts of you never feel heavy.</p>
+                <p>They feel like peace.</p>
+                <p>You are my anchor when life moves too fast.</p>
+                <p>My fire when life feels cold.</p>
+                <p>My calm when everything feels loud.</p>
+                <p>And loving you has become as natural as breathing.</p>
+                <p>I don’t force it.</p>
+                <p>It simply lives in me.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 75 —</div>
+    </div>
+
+    <div class="page" id="page-76">
+        <div class="page-inner">
+            <h2 class="chapter-title">I’ve Got You</h2>
+            <div class="chapter-content">
+                <p>This is where love becomes protection.</p>
+                <p>Where words turn into action.</p>
+                <p>I’ve got you.</p>
+                <p>Fully.</p>
+                <p>Completely.</p>
+                <p>And I’m not letting go.</p>
+                <p>Rest on my chest.</p>
+                <p>Lean your weight into me.</p>
+                <p>Take my strength when yours feels low.</p>
+                <p>Because if your heart is in my hands…</p>
+                <p>I’ll hold it gently.</p>
+                <p>Always.</p>
+                <p>That’s my promise.</p>
+                <p>Not to be perfect.</p>
+                <p>But to be present.</p>
+                <p>To show up.</p>
+                <p>To stay.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 76 —</div>
+    </div>
+
+    <div class="page" id="page-77">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Don’t Wanna Imagine</h2>
+            <div class="chapter-content">
+                <p>There are things in life I can imagine without fear.</p>
+                <p>Different roads.</p>
+                <p>Different futures.</p>
+                <p>Different outcomes.</p>
+                <p>But there is one thing I can’t imagine anymore.</p>
+                <p>A life without you.</p>
+                <p>Because your heart feels like home.</p>
+                <p>And once you know what home feels like…</p>
+                <p>you don’t want to lose it.</p>
+                <p>You became the place my soul rests.</p>
+                <p>The place I exhale.</p>
+                <p>And the thought of life without that…</p>
+                <p>doesn’t feel like life at all.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 77 —</div>
+    </div>
+
+    <div class="page" id="page-78">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Choose You Daily</h2>
+            <div class="chapter-content">
+                <p>Love isn’t only one big choice.</p>
+                <p>It’s a thousand small ones.</p>
+                <p>Every day.</p>
+                <p>And every day, it’s still you.</p>
+                <p>The first thought.</p>
+                <p>The last thought.</p>
+                <p>The person my heart reaches for before I even open my eyes.</p>
+                <p>And if I had to do it all over again…</p>
+                <p>I’d still pick you.</p>
+                <p>Every single time.</p>
+                <p>Because all I ever need is you.</p>
+                <p>And every day that passes only proves that more.</p>
+                <p>My heart keeps burning for you.</p>
+                <p>Steady.</p>
+                <p>Warm.</p>
+                <p>Alive.</p>
+                <p>And I’ll keep choosing you.</p>
+                <p>Over and over.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 78 —</div>
+    </div>
+
+    <div class="page" id="page-79">
+        <div class="page-inner">
+            <h2 class="chapter-title">You Are My Always</h2>
+            <div class="chapter-content">
+                <p>Journee…</p>
+                <p>you are my always.</p>
+                <p>The touch my heart craves.</p>
+                <p>The place my soul runs back to.</p>
+                <p>Every night with you feels golden.</p>
+                <p>Every moment in your arms feels like belonging.</p>
+                <p>And every day…</p>
+                <p>I fall deeper.</p>
+                <p>Not because I’m losing myself.</p>
+                <p>But because I’m finding myself in this love.</p>
+                <p>Your love became my peace.</p>
+                <p>Your arms became my place.</p>
+                <p>And every time I hold you close…</p>
+                <p>it feels like my soul has found exactly where it was meant to rest.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 79 —</div>
+    </div>
+
+    <div class="page" id="page-80">
+        <div class="page-inner">
+            <h2 class="chapter-title">Rain Dance</h2>
+            <div class="chapter-content">
+                <p>Looking back, most people might say this road hasn’t been easy.</p>
+                <p>And maybe they’d be right.</p>
+                <p>There were storms.</p>
+                <p>Heavy days.</p>
+                <p>Hard moments.</p>
+                <p>But the truth is…</p>
+                <p>loving you was never hard.</p>
+                <p>Standing beside you was never hard.</p>
+                <p>Holding on through the rain was never hard.</p>
+                <p>Because it was you.</p>
+                <p>And even when the skies were heavy…</p>
+                <p>we didn’t run.</p>
+                <p>We stayed.</p>
+                <p>We held on.</p>
+                <p>We kept choosing each other.</p>
+                <p>And somewhere in all that rain…</p>
+                <p>we found where we belong.</p>
+                <p>Not in perfection.</p>
+                <p>In truth.</p>
+                <p>In love.</p>
+                <p>In us.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 80 —</div>
+    </div>
+
+    <div class="page" id="page-81">
+        <div class="page-inner">
+            <h2 class="chapter-title">Forever Makes Sense With You</h2>
+            <div class="chapter-content">
+                <p>Some loves feel exciting.</p>
+                <p>Some feel dangerous.</p>
+                <p>Some feel temporary.</p>
+                <p>But you…</p>
+                <p>you feel right.</p>
+                <p>Like the missing piece I didn’t know I was searching for.</p>
+                <p>Like the perfect fit in my arms.</p>
+                <p>Like the answer to every ache I carried.</p>
+                <p>I don’t need bright lights.</p>
+                <p>I don’t need distractions.</p>
+                <p>Because you are the only glow I see.</p>
+                <p>The only high I want.</p>
+                <p>The only future I want.</p>
+                <p>Forever makes sense with you.</p>
+                <p>Because you are everything I could ever want.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 81 —</div>
+    </div>
+
+    <div class="page" id="page-82">
+        <div class="page-inner">
+            <h2 class="chapter-title">When I See You Smile</h2>
+            <div class="chapter-content">
+                <p>Your smile has become one of my greatest comforts.</p>
+                <p>On the hard days.</p>
+                <p>On the tired days.</p>
+                <p>On the days where life feels heavier than it should.</p>
+                <p>I think of you.</p>
+                <p>And I see your smile.</p>
+                <p>And suddenly…</p>
+                <p>I can breathe again.</p>
+                <p>You make me feel like I can face the world.</p>
+                <p>Like no matter how hard things get, I can keep going.</p>
+                <p>Because your smile carries light.</p>
+                <p>Hope.</p>
+                <p>Warmth.</p>
+                <p>And every time I see it…</p>
+                <p>it reminds me why I keep fighting for this.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 82 —</div>
+    </div>
+
+    <div class="page" id="page-83">
+        <div class="page-inner">
+            <h2 class="chapter-title">I Found Everything In You</h2>
+            <div class="chapter-content">
+                <p>And maybe this is the simplest truth of all.</p>
+                <p>I found everything in you.</p>
+                <p>Love.</p>
+                <p>Peace.</p>
+                <p>Passion.</p>
+                <p>Safety.</p>
+                <p>Friendship.</p>
+                <p>Desire.</p>
+                <p>Home.</p>
+                <p>You take my breath away.</p>
+                <p>Not just because of how deeply I love you…</p>
+                <p>but because of how complete it feels.</p>
+                <p>Like there’s nothing missing anymore.</p>
+                <p>And every day I continue to fall deeper.</p>
+                <p>More in love with your heart.</p>
+                <p>Your mind.</p>
+                <p>Your soul.</p>
+                <p>Everything.</p>
+                <p>Because you are everything.</p>
+                <p>And if love has ever had a destination…</p>
+                <p>for me, it was always you.</p>
+            </div>
+        </div>
+        <div class="page-footer">— 83 —</div>
+    </div>
+
+    <!-- Epilogue -->
+    <div class="page" id="page-84">
+        <div class="page-inner">
+            <h2 class="chapter-title">Epilogue</h2>
+            <div class="chapter-content">
+                <p>Today, when I look back at every song in this story, I don’t just hear music anymore.</p>
+                <p>I hear us.</p>
+                <p>I hear every beginning, every hesitation, every late-night conversation, every quiet moment, every piece of healing, every laugh, every touch, every moment that slowly brought us here.</p>
+                <p>What started as songs became memories.</p>
+                <p>And those memories became love.</p>
+                <p>When I look back now, I see a man who wasn’t searching for anything…</p>
+                <p>until he found you.</p>
+                <p>And somehow, without even realising it, you became the place my heart had been trying to find all along.</p>
+                <p>You became my peace in the chaos.</p>
+                <p>My comfort in the silence.</p>
+                <p>My fire in the cold.</p>
+                <p>My safe place when life felt heavy.</p>
+                <p>And the beautiful thing is…</p>
+                <p>you did it just by being you.</p>
+                <p>You taught me that love doesn’t have to be loud to be real.</p>
+                <p>Sometimes it’s in the morning coffee.</p>
+                <p>Sometimes it’s in the long talks until sunrise.</p>
+                <p>Sometimes it’s in the quiet way someone stays.</p>
+                <p>And you stayed.</p>
+                <p>Through the uncertainty.</p>
+                <p>Through the heavy days.</p>
+                <p>Through the healing.</p>
+                <p>Through the moments where love could have been easier to run from.</p>
+                <p>But we didn’t run.</p>
+                <p>We held on.</p>
+                <p>And because of that, what we built became something stronger than I ever imagined.</p>
+                <p>If I had to live this whole story again—</p>
+                <p>every song,</p>
+                <p>every feeling,</p>
+                <p>every ache,</p>
+                <p>every wait,</p>
+                <p>every lesson—</p>
+                <p>I would still choose you.</p>
+                <p>Every single time.</p>
+                <p>Because somewhere between the first smile, the first spark, the first time you made my heart race, and every song that followed…</p>
+                <p>you became the greatest love I’ve ever known.</p>
+                <p>And now, after all of it, after every chapter and every note…</p>
+                <p>there’s only one truth left.</p>
+                <p>If my heart could speak without music,</p>
+                <p>if it could strip away every lyric and every melody and leave only what’s real…</p>
+                <p>it would still say the same thing.</p>
+                <p><strong>I love you, Journee.</strong></p>
+                <p><strong>I loved you in the beginning before I understood it.</strong></p>
+                <p><strong>I love you now with everything I am.</strong></p>
+                <p><strong>And I’ll love you in all the tomorrows still waiting for us.</strong></p>
+                <p><strong>Yesterday.</strong></p>
+                <p><strong>Today.</strong></p>
+                <p><strong>Tomorrow.</strong></p>
+                <p><strong>Always.</strong></p>
+            </div>
+        <div class="page-footer">— 84 —</div>
+    </div>
+</div>
+
+<div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="navigatePage(-1)" aria-label="Previous page">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    <button class="nav-btn" id="nextBtn" onclick="navigatePage(1)" aria-label="Next page">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </button>
+</div>
+
+<script>
+    const totalPages = 84;
+    let currentPage = 1;
+
+    function updateProgress() {
+        const progress = (currentPage / totalPages) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    }
+
+    function updateNavButtons() {
+        document.getElementById('prevBtn').disabled = currentPage === 1;
+        document.getElementById('nextBtn').disabled = currentPage === totalPages;
+    }
+
+    function scrollToPage(pageNum) {
+        const page = document.getElementById('page-' + pageNum);
+        if (page) {
+            page.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            currentPage = pageNum;
+            updateProgress();
+            updateNavButtons();
+        }
+    }
+
+    function navigatePage(direction) {
+        const newPage = currentPage + direction;
+        if (newPage >= 1 && newPage <= totalPages) {
+            scrollToPage(newPage);
+        }
+    }
+
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const pages = document.querySelectorAll('.page');
+            const scrollPos = window.scrollY + window.innerHeight / 2;
+            
+            pages.forEach((page, index) => {
+                const pageTop = page.offsetTop;
+                const pageBottom = pageTop + page.offsetHeight;
+                
+                if (scrollPos >= pageTop && scrollPos < pageBottom) {
+                    currentPage = index + 1;
+                    updateProgress();
+                    updateNavButtons();
+                }
+            });
+        }, 100);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') navigatePage(-1);
+        else if (e.key === 'ArrowRight') navigatePage(1);
+    });
+
+    updateProgress();
+    updateNavButtons();
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) navigatePage(1);
+        if (touchEndX > touchStartX + 50) navigatePage(-1);
+    }
+</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;var productId=extractProductId(target)||extractProductId(a);if(!productId)return;e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*")},true)})();</script></body>
+</html>
